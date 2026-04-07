@@ -38,8 +38,8 @@
   - `docs/claude-code/02-基础使用完整指南.md`
   - `docs/claude-code/03-Commands系统完整指南.md`
   - `docs/claude-code/08-Plugins生态完整指南.md`
-  - `docs/claude-code/13-Remote-Control完整指南.md`
-  - `docs/claude-code/14-Channels与计划任务完整指南.md`
+  - `docs/claude-code/12-Remote-Control完整指南.md`
+  - `docs/claude-code/13-Channels与计划任务完整指南.md`
 
 ### 阶段 4：一致性检查
 - **状态：** complete
@@ -60,7 +60,7 @@
   - 收尾规划文件并准备向用户交付本轮修订结果
 - 创建/修改的文件：
   - `docs/claude-code/03-Commands系统完整指南.md`
-  - `docs/claude-code/14-Channels与计划任务完整指南.md`
+  - `docs/claude-code/13-Channels与计划任务完整指南.md`
   - `task_plan.md`
   - `progress.md`
 

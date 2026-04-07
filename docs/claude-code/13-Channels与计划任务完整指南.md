@@ -428,7 +428,7 @@ cancel the deploy check job
 
 ## 14. 下一步建议
 
-- 想跨设备继续本地会话：继续看 [Remote Control完整指南](./13-Remote-Control完整指南.md)
+- 想跨设备继续本地会话：继续看 [Remote Control完整指南](./12-Remote-Control完整指南.md)
 - 想控制模型、1M 上下文和 `opusplan`：继续看 [安装指南中的模型配置章节](./01-Claude-Code完整安装指南.md#85部分模型配置安装后的进阶配置)
 
 ---

@@ -353,7 +353,7 @@ claude --remote-control
 
 ## 12. 下一步建议
 
-- 想把外部消息直接推到会话中：继续看 [Channels与计划任务完整指南](./14-Channels与计划任务完整指南.md)
+- 想把外部消息直接推到会话中：继续看 [Channels与计划任务完整指南](./13-Channels与计划任务完整指南.md)
 - 想理解模型切换、1M context 和 `opusplan`：继续看 [安装指南中的模型配置章节](./01-Claude-Code完整安装指南.md#85部分模型配置安装后的进阶配置)
 
 ---

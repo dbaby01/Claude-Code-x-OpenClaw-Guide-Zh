@@ -103,8 +103,8 @@
 | 09 | [Agent-SDK完整指南](docs/claude-code/09-Agent-SDK完整指南.md) | 6-8h | ⭐⭐⭐ | ⭐⭐ | 编程开发AI Agent |
 | 10 | [综合实战完整指南](docs/claude-code/10-综合实战完整指南.md) | 2-3h | ⭐⭐⭐ | ⭐⭐ | 团队协作、CI/CD集成 |
 | 11 | [企业实战完整指南](docs/claude-code/11-企业实战完整指南.md) | 4-6h | ⭐⭐⭐ | ⭐ | 企业级最佳实践 |
-| 12 | [Remote Control完整指南](docs/claude-code/13-Remote-Control完整指南.md) | 1-2h | ⭐⭐ | ⭐⭐ | 跨设备继续本地会话、`/remote-control`、`claude remote-control` |
-| 13 | [Channels与计划任务完整指南](docs/claude-code/14-Channels与计划任务完整指南.md) | 2-3h | ⭐⭐⭐ | ⭐ | `--channels`、`/schedule`、`/loop`、`CronCreate` |
+| 12 | [Remote Control完整指南](docs/claude-code/12-Remote-Control完整指南.md) | 1-2h | ⭐⭐ | ⭐⭐ | 跨设备继续本地会话、`/remote-control`、`claude remote-control` |
+| 13 | [Channels与计划任务完整指南](docs/claude-code/13-Channels与计划任务完整指南.md) | 2-3h | ⭐⭐⭐ | ⭐ | `--channels`、`/schedule`、`/loop`、`CronCreate` |
 
 **速查**：[Claude Code 快速导航卡](docs/claude-code/快速导航卡.md)
 

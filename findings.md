@@ -23,8 +23,8 @@
   - Channels
   - 计划任务与 `/schedule`、`/loop`、`CronCreate/CronList/CronDelete`
 - 本轮已新增专题文档：
-  - `docs/claude-code/13-Remote-Control完整指南.md`
-  - `docs/claude-code/14-Channels与计划任务完整指南.md`
+  - `docs/claude-code/12-Remote-Control完整指南.md`
+  - `docs/claude-code/13-Channels与计划任务完整指南.md`
 - 本轮已修订的入口 / 核心文档：
   - `README.md`
   - `docs/claude-code/快速导航卡.md`

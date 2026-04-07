@@ -3284,8 +3284,8 @@ claude --model opusplan
 ### 8.5.11 下一步建议
 
 - 想把模型配置纳入团队治理和企业实战：继续看 [企业实战完整指南](./11-企业实战完整指南.md)
-- 想跨设备继续本地会话：继续看 [Remote Control完整指南](./13-Remote-Control完整指南.md)
-- 想理解 Channels 与计划任务：继续看 [Channels与计划任务完整指南](./14-Channels与计划任务完整指南.md)
+- 想跨设备继续本地会话：继续看 [Remote Control完整指南](./12-Remote-Control完整指南.md)
+- 想理解 Channels 与计划任务：继续看 [Channels与计划任务完整指南](./13-Channels与计划任务完整指南.md)
 
 ---
 
@@ -3454,7 +3454,7 @@ rm ~/.asdf/shims/claude  # 如果你用asdf
 
 - 认证步骤旁：增补 **v2.1.92** 官方 release 中 **3rd-party platform → interactive Bedrock setup wizard** 的说明（附 release 链接，不编造向导界面）
 - 页脚：与 **v2.1.92** 验证口径对齐，避免仍显示「仅 2026-02」造成读者误以为未更新
-- 文内「下一步」：修正第 14 篇相对链接为 **`./14-Channels与计划任务完整指南.md`**（原「上下文管理」文件名已不存在，会导致死链）
+- 文内「下一步」：修正第 13 篇相对链接为 **`./13-Channels与计划任务完整指南.md`**（与教程序号、文件名一致，避免死链）
 
 #### V3.0 重大更新（2026-02-02）
 
