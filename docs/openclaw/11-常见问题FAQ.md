@@ -24,7 +24,7 @@
 > - **安装**：`macOS / Linux / WSL2` 下官方优先推荐 `install.sh + openclaw onboard`
 > - **Windows**：原生可用，但 WSL2 更稳定
 > - **诊断**：`openclaw doctor` 仍是正式支持的排障入口
-> - **稳定版 / 预发布**：教程以 **v2026.3.28** 稳定版为修订参考；Releases 上另有预发布（如 **v2026.4.1-beta.1**）。细则见 [00-阅读指南](00-阅读指南.md)。
+> - **稳定版 / 预发布**：教程以 **v2026.4.24** 稳定版为修订参考；Releases 上另有预发布（如 **v2026.4.24-beta.5**）。细则见 [00-阅读指南](00-阅读指南.md)。
 
 ---
 
@@ -289,10 +289,10 @@ openclaw --version
 npm view openclaw versions --json
 
 # 回滚到指定版本
-npm install -g openclaw@2026.1.0
+npm install -g openclaw@2026.3.28
 
 # Docker 回滚
-docker pull openclaw/openclaw:v2026.1.0
+docker pull openclaw/openclaw:v2026.3.28
 # 修改 docker-compose.yml 中的 image tag 后重启
 ```
 
@@ -837,6 +837,7 @@ ollama pull qwen2.5:14b     # 中文能力更好
 
 # DeepSeek — 通过 OpenAI 兼容接口
 # baseUrl: "https://api.deepseek.com/v1"
+# v2026.4.24+ 新增 DeepSeek V4 Flash（默认）和 V4 Pro 模型
 
 # 最简单的方式：通过 OpenRouter 一站式接入所有国产模型
 export OPENROUTER_API_KEY="sk-or-xxxxx"
@@ -1188,6 +1189,8 @@ docker compose up  # 不加 -d
 
 **原因：** 连接了太多平台、会话数据积累、或者存在内存泄漏。
 
+> v2026.4.20+ 默认启用了会话维护（Sessions/Maintenance）的条目上限和基于时间的自动清理，可以有效防止 OOM。如果你从旧版本升级，建议确认此特性已启用。
+
 **解决方案：**
 
 ```bash
@@ -1428,6 +1431,10 @@ openclaw config get agents.defaults.compaction.memoryFlush
 # 第四步：手动编辑记忆文件
 nano ~/.openclaw/workspace/MEMORY.md
 # 把重要信息直接写进去
+
+# 第五步（v2026.4.12+）：启用 Active Memory 插件
+# Active Memory 插件可自动召回、提升和整理记忆
+# 通过 openclaw plugins 查看是否已启用
 ```
 
 ### Q57: 记忆文件太大导致 Token 超限
@@ -1577,7 +1584,15 @@ cd ~/.openclaw/workspace && git init && git add . && git commit -m "snapshot"
 
 ### Q64: OpenClaw 有已知的安全漏洞吗？
 
-**说明：** OpenClaw 在 2026 年初曾披露过 CVE 安全漏洞，社区已经修复。建议：
+**说明：** OpenClaw 在 2026 年初曾披露过 CVE 安全漏洞，社区已经修复。v2026.4.x 系列持续加强了安全防护，主要包括：
+
+- **SSRF 防护**（v2026.4.2+）：集中化的请求传输策略，阻止对私有网络的导航重定向
+- **环境变量清理**（v2026.4.7+）：自动拦截危险的环境变量覆盖
+- **Owner-Enforced Commands**（v2026.4.5+）：白名单修改需要所有者身份验证
+- **Shell Wrapper 检测**（v2026.4.1+）：扩展了对 shell 包装命令的识别和 env-argv 注入拦截
+- **Hook 失败模式**（v2026.4.5+）：Hook 崩溃时采用 fail-closed 策略，不会默认放行
+
+建议：
 
 ```bash
 # 始终保持最新版本
@@ -1585,6 +1600,10 @@ npm update -g openclaw
 
 # 查看安全公告
 # https://github.com/openclaw/openclaw/security/advisories
+
+# 运行安全审计
+openclaw security audit
+openclaw security audit --deep  # 包含实时探测
 
 # 检查当前版本是否有已知漏洞
 openclaw --version
@@ -1873,6 +1892,86 @@ Gateway 是基础设施层，Agent 是业务逻辑层。一个 Gateway 可以服
 - Node.js 版本（`node --version`）
 - 操作系统信息
 - 相关日志（前台运行 `openclaw gateway --port 18789 --verbose` 查看）
+
+---
+
+## 十一、版本升级与迁移（v2026.3.28 → v2026.4.24）
+
+> 📌 **本节包含 4 个问题：**
+> [Q80: 升级要点](#q80-从-v202632x-升级到-v202642x-有哪些注意事项) | [Q81: 反向代理配置变更](#q81-升级后反向代理配置需要改吗) | [Q82: 插件白名单变更](#q82-升级后-allowlist-相关操作报权限错误) | [Q83: 性能提升](#q83-升级后启动变快了是正常的吗)
+
+### Q80: 从 v2026.3.2x 升级到 v2026.4.2x 有哪些注意事项？
+
+**说明：** v2026.4.x 系列包含多项安全加固和功能改进。大部分配置向后兼容，但以下几点需要注意：
+
+1. **Owner-Enforced Commands（v2026.4.5+）**：`/allowlist add` 和 `/allowlist remove` 现在需要 Owner 身份验证。如果你之前在自动化脚本中使用了这些命令，需要确保调用者具有 Owner 权限
+2. **转发头安全检查（v2026.4.x+）**：如果你使用反向代理，Gateway 现在会检查转发头的一致性（详见 Q81）
+3. **环境变量过滤（v2026.4.7+）**：Gateway 会自动拦截危险的环境变量覆盖，如果你的部署脚本依赖特定的环境变量传递，建议测试确认
+4. **Hook 失败模式变更（v2026.4.5+）**：Hook 崩溃时从 fail-open 改为 fail-closed，如果你有自定义 Hook，升级后请确认它们运行正常
+5. **Cron 状态拆分（v2026.4.20+）**：定时任务运行时状态拆分到独立的 `jobs-state.json` 文件，升级后首次启动会自动迁移
+
+**升级步骤：**
+
+```bash
+# 1. 备份
+cp -r ~/.openclaw ~/.openclaw.backup-$(date +%Y%m%d)
+
+# 2. 升级
+npm update -g openclaw
+
+# 3. 验证
+openclaw --version
+openclaw doctor
+openclaw security audit
+
+# 4. 如果使用反向代理，检查转发头配置（见 Q81）
+```
+
+### Q81: 升级后反向代理配置需要改吗？
+
+**说明：** 如果你通过 Nginx 等反向代理暴露 Gateway，v2026.4.x 的转发头安全检查可能影响你的配置。
+
+**需要确认的事项：**
+
+1. 反向代理的 `X-Forwarded-For` 头必须**覆盖**客户端值，不能**追加**
+
+```nginx
+# 正确：覆盖客户端的转发头
+proxy_set_header X-Forwarded-For $remote_addr;
+
+# 错误（旧写法）：追加模式，可能被客户端伪造
+# proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```
+
+2. 如果使用 trusted-proxy 认证模式，`trustedProxies` 中不能填 loopback 地址（`127.0.0.1`、`::1`）
+3. 如果 Gateway 和代理在同一台机器上通过 loopback 通信，改用 token/password 认证模式
+
+### Q82: 升级后 /allowlist 相关操作报权限错误
+
+**现象：** 升级到 v2026.4.5+ 后，执行 `/allowlist add` 或 `/allowlist remove` 时提示权限不足。
+
+**原因：** 这是 v2026.4.5 引入的 Owner-Enforced Commands 特性。白名单修改现在需要 Gateway 所有者的实际身份验证，不再接受宽松的回退。
+
+**解决方案：**
+
+```bash
+# 确保你通过已认证的 Owner 身份操作
+# 1. 如果使用 Token 认证，确保连接时提供了正确的 Token
+# 2. 如果使用配对系统，确保你是已配对的 Owner 用户
+# 3. 通过 CLI 直接管理白名单
+openclaw approvals get
+openclaw approvals set <tool-name> --allow
+```
+
+### Q83: 升级后启动变快了，是正常的吗？
+
+**说明：** 是的，这是正常现象。v2026.4.20+ 包含了显著的启动性能优化：
+
+- **插件启动**：通过延迟加载和 manifest-backed 模型行，bundled 依赖加载时间降低 82-90%
+- **Doctor 诊断**：插件延迟加载使冷启动时间降低约 74%
+- **模型目录**：静态模型目录替代运行时加载，减少启动时的网络请求
+
+这些优化在 v2026.4.24 中进一步改善（通过 provider 依赖的延迟加载和 manifest-backed model rows）。
 
 ---
 

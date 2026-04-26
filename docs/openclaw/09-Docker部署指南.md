@@ -17,7 +17,7 @@
 
 > **教程版本基线**
 >
-> 稳定版参考 **[v2026.3.28](https://github.com/openclaw/openclaw/releases/tag/v2026.3.28)**；另有预发布线见 [Releases](https://github.com/openclaw/openclaw/releases)。约定全文见 [00-阅读指南](00-阅读指南.md)。
+> 稳定版参考 **[v2026.4.24](https://github.com/openclaw/openclaw/releases/tag/v2026.4.24)**；另有预发布线见 [Releases](https://github.com/openclaw/openclaw/releases)。约定全文见 [00-阅读指南](00-阅读指南.md)。
 
 ## 为什么用 Docker 部署 OpenClaw？
 
@@ -126,7 +126,7 @@ docker compose version         # 确认 Compose v2（不带横杠）
 
 ```bash
 docker pull openclaw/openclaw:latest    # 最新稳定版
-docker pull openclaw/openclaw:v2026.3.13  # 指定版本
+docker pull openclaw/openclaw:v2026.4.24  # 指定版本
 docker images | grep openclaw           # 查看本地镜像
 ```
 
@@ -152,7 +152,7 @@ docker build --build-arg OPENCLAW_DOCKER_APT_PACKAGES="ffmpeg imagemagick" \
 | 标签 | 说明 | 适用场景 |
 |------|------|---------|
 | `latest` | 最新稳定版 | 生产环境 |
-| `vYYYY.M.D` | 指定版本号（如 `v2026.3.13`） | 需要版本锁定 |
+| `vYYYY.M.D` | 指定版本号（如 `v2026.4.24`） | 需要版本锁定 |
 | `nightly` | 每日构建 | 尝鲜新功能 |
 | `local` | 本地构建 | 自定义需求 |
 
@@ -455,6 +455,8 @@ ports:
 
 > **安全提示**：生产环境建议绑定 `127.0.0.1`，通过反向代理暴露服务，不要直接把端口开放到公网。只有 Gateway（18789）需要对外暴露，其他端口仅在需要时映射。
 
+> **反向代理 Forwarded Headers 安全提示（v2026.4.x+）**：OpenClaw 现在会检查转发头（`X-Forwarded-For` / `X-Forwarded-Host` / `X-Forwarded-Proto`）的一致性。即使请求通过 loopback 到达，如果携带了指向非本地来源的转发头，Gateway 会将该请求视为远程请求，不再享有 loopback 本地信任。反向代理必须**覆盖**（而非追加）来自客户端的转发头。如果使用 trusted-proxy 认证模式，需要在 `gateway.trustedProxies` 中配置代理 IP，且不能使用 loopback 地址。详见 [10-安全配置指南](10-安全配置指南.md)。
+
 ### Docker 网络模式
 
 ```yaml
@@ -524,7 +526,8 @@ server {
         proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # 重要：使用 = 赋值覆盖客户端传入的转发头，不要追加
+        proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_read_timeout 300s;
         proxy_send_timeout 300s;
@@ -776,6 +779,30 @@ docker build -t openclaw:sandbox -f Dockerfile.sandbox .
 # 带浏览器的沙箱
 docker build -t openclaw:sandbox-browser -f Dockerfile.sandbox-browser .
 ```
+
+### Podman Rootless 替代方案
+
+如果你的环境不允许使用 Docker 或需要无 root 权限运行容器，OpenClaw 官方支持 Podman rootless 部署。
+
+**核心区别：** Podman 以当前用户身份运行容器（`--userns=keep-id`），不需要 Docker 守护进程，也不需要 root 权限。
+
+**快速开始：**
+
+```bash
+# 一键初始化（构建镜像 + 创建配置 + 启动 Gateway）
+./scripts/podman/setup.sh
+
+# 使用 CLI 管理容器化的 Gateway
+openclaw --container <容器名> gateway status
+```
+
+**SELinux 环境：** Podman 启动脚本会自动检测 SELinux 状态，在 enforcing/permissive 模式下自动为挂载目录追加 `:Z` 选项，无需手动配置。
+
+**Systemd 集成（Quadlet）：** 使用 `--quadlet` 标志可生成 systemd 用户服务，支持开机自启和 `systemctl --user` 管理。需要 `loginctl enable-linger` 以支持 SSH/无头环境下的持久运行。
+
+**端口绑定：** 默认只绑定 `127.0.0.1`（Gateway 18789，Bridge 18790），可通过 `OPENCLAW_PODMAN_GATEWAY_HOST_PORT` 等环境变量覆盖。
+
+> 详细的 Podman 部署文档见 [docs.openclaw.ai/install/podman](https://docs.openclaw.ai/install/podman)。
 
 ---
 

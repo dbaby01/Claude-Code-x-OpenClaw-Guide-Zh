@@ -6,7 +6,7 @@
 > - **预计学时**：1-2小时
 > - **难度等级**：⭐⭐ 进阶
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（验证于 2026-04-05）
+> - **适用版本**：Claude Code v2.1.119（验证于 2026-04-26）
 > - **信息来源**：[Claude Code 官方文档 - Remote Control](https://code.claude.com/docs/en/remote-control)
 
 ---
@@ -65,6 +65,8 @@ Remote Control 不是“把你的本地项目同步到云端”，而是：
 - 不是 API key 模式
 - Team / Enterprise 需要管理员先在后台启用 Remote Control
 
+支持 Remote Control 的订阅计划：**Pro、Max、Team、Enterprise**。
+
 ### 3.1 推荐先检查这三件事
 
 ```bash
@@ -122,9 +124,11 @@ claude remote-control --spawn worktree
 这些参数里最值得理解的是：
 
 - `--name`：远端会话标题
-- `--spawn same-dir|worktree`：并发会话如何创建
+- `--spawn same-dir|worktree|session`：并发会话如何创建（默认 `same-dir`）
 - `--sandbox / --no-sandbox`：是否启用沙箱
 - `--capacity <N>`：最多允许多少个并发会话
+
+在 server mode 运行时，可以按 `w` 键在 `same-dir` 和 `worktree` 之间实时切换。
 
 ---
 
@@ -221,13 +225,39 @@ Remote Control 启动后，官方支持三种常见连接方式：
 - 更适合并行任务
 - 需要 git 仓库
 
-如果你准备用 Remote Control 做“多设备继续”而非“多人并发”，`same-dir` 足够。
+如果你准备用 Remote Control 做”多设备继续”而非”多人并发”，`same-dir` 足够。
 
 如果你打算把它当作多线程工作台，优先用 `worktree`。
 
+### `session`
+
+- 每个并发会话独立隔离
+- 不依赖 git
+- 适合不在 git 仓库中的项目
+
+### 运行时切换
+
+在 server mode 下，按 `w` 可以在 `same-dir` 和 `worktree` 之间实时切换。
+
 ---
 
-## 7. Sandbox、权限和安全边界
+## 7. 远端可用命令 vs 仅本地命令
+
+不是所有 Claude Code 命令都能在远端界面执行。官方当前清单：
+
+**远端可用**（手机 / 浏览器都能执行）：
+
+`/compact`、`/clear`、`/context`、`/usage`、`/exit`、`/extra-usage`、`/recap`、`/reload-plugins`、`/autocompact`
+
+**仅本地**（必须在终端操作）：
+
+`/mcp`、`/plugin`、`/resume`（涉及交互式选择器的命令）
+
+这意味着你不能在手机上装插件或恢复旧会话，但日常的上下文管理和监控都能远程完成。
+
+---
+
+## 8. Sandbox、权限和安全边界
 
 Remote Control 的一个关键误区是：
 
@@ -235,13 +265,21 @@ Remote Control 的一个关键误区是：
 
 所以安全问题本质上仍是**本地 Claude Code 权限问题**。
 
-### 7.1 官方口径下要注意的点
+### 8.1 官方口径下要注意的点
 
 - Remote Control 仍继承本地会话的文件、工具和 MCP 能力
 - 允许谁连入，比“界面在哪”更重要
 - 如果本地会话权限很宽，远端也会继承
 
-### 7.2 建议做法
+### 8.2 传输安全
+
+官方当前的安全架构：
+
+- 所有流量走 **HTTPS/TLS**，经由 Anthropic API 中转
+- 你的机器**不会打开任何入站端口**
+- 使用**多个短期、单一用途、独立过期**的凭据
+
+### 8.3 建议做法
 
 - 涉及高风险仓库时，优先配合 sandbox
 - 高风险任务不要顺手开 `bypassPermissions`
@@ -249,7 +287,7 @@ Remote Control 的一个关键误区是：
 
 ---
 
-## 8. Team / Enterprise 常见阻塞
+## 9. Team / Enterprise 常见阻塞
 
 Team 和 Enterprise 下，Remote Control 默认可能是关闭的。
 
@@ -258,14 +296,18 @@ Team 和 Enterprise 下，Remote Control 默认可能是关闭的。
 - Remote Control requires a claude.ai subscription
 - Remote Control is disabled by your organization’s policy
 - Unable to determine your organization for Remote Control eligibility
+- Remote Control requires a full-scope login token
+- Remote Control is not yet enabled for your account
 
-### 8.1 排查顺序
+### 9.1 排查顺序
 
 1. 先确认你不是 API key 登录
 2. 再确认管理员已经打开 Claude Code 后台里的 Remote Control 开关
 3. 确认当前项目已接受 workspace trust
+4. 检查是否设置了 `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` 或 `DISABLE_TELEMETRY` 环境变量（会干扰 RC 连接）
+5. 用 `/status` 确认当前登录方式和订阅状态
 
-### 8.2 托管策略：`forceRemoteSettingsRefresh`（v2.1.92）
+### 9.2 托管策略：`forceRemoteSettingsRefresh`（v2.1.92）
 
 若组织使用 **remote managed settings**，请关注 **v2.1.92** 引入的策略项（以下为 [v2.1.92 release](https://github.com/anthropics/claude-code/releases/tag/v2.1.92) **英文原文**）：
 
@@ -273,9 +315,33 @@ Team 和 Enterprise 下，Remote Control 默认可能是关闭的。
 
 **含义**：开启后，CLI **在成功拉取到最新远程托管设置之前不会启动**；若拉取失败则 **直接退出**（fail-closed）。具体在项目/企业配置中的写法，以官方托管设置文档与你方管理员下发的 schema 为准，本教程不臆造 JSON 示例。
 
+### 9.3 更高版本增强（v2.1.93 → v2.1.119）
+
+v2.1.92 之后的版本对 Remote Control 做了一系列增强和修复（以下版本号经 GitHub Release Notes 逐条核实）：
+
+| 版本 | 增强 |
+|------|------|
+| v2.1.98 | 修复 Remote Control 权限处理器中的内存泄漏 |
+| v2.1.101 | 修复 worktree 在会话崩溃时被删除、SSH 环境下 `/remote-control` 失败等问题 |
+| v2.1.110 | 远端支持 `/autocompact`、`/context`、`/exit`、`/reload-plugins` 命令 |
+| v2.1.110 | Push notifications：Claude 可向手机推送通知（需在 `/config` 中启用 "Push when Claude decides"） |
+| v2.1.113 | 修复子智能体执行过程不在远端实时显示的问题（subagent streaming） |
+| v2.1.113 | 修复会话退出时未正确归档导致重启后丢失的问题 |
+| v2.1.116 | 远端支持 `@`-file 自动补全和 `/extra-usage` 命令 |
+| v2.1.118-119 | 修复 JWT 刷新期间会话被意外归档的稳定性问题 |
+
+其中 **Push notifications** 需要额外配置：
+
+1. 手机安装 Claude App（iOS / Android）
+2. 在 Claude Code 中执行 `/config`
+3. 启用 "Push when Claude decides"
+4. 确保手机和 CLI 使用同一账号
+
+启用后，Claude 在 Remote Control 会话中有重要输出时会主动推送通知到手机。
+
 ---
 
-## 9. 典型使用场景
+## 10. 典型使用场景
 
 ## 场景 1：离开工位继续盯一个长任务
 
@@ -303,7 +369,7 @@ claude --remote-control "deploy-watch"
 
 ---
 
-## 10. 常见问题
+## 11. 常见问题
 
 ### Q1：Remote Control 会把我的代码上传到云端吗？
 
@@ -327,11 +393,23 @@ claude --remote-control "deploy-watch"
 
 ### Q5：它能替代 Cloud / Desktop scheduled tasks 吗？
 
-不能。Remote Control 适合“继续一个正在运行的本地会话”，不是长期持久调度系统。
+不能。Remote Control 适合”继续一个正在运行的本地会话”，不是长期持久调度系统。
+
+### Q6：Ultraplan 模式下能用 Remote Control 吗？
+
+不能。官方文档明确说明 **Ultraplan 会断开 Remote Control**。如果你需要远程监控，避免在 Remote Control 会话中使用 Ultraplan。
+
+### Q7：网络不稳定会怎样？
+
+短暂断网会自动重连（包括笔记本合盖/休眠）。但如果**网络中断超过约 10 分钟**，会话会超时断开。
+
+### Q8：能同时开多个 Remote Control 会话吗？
+
+在 server mode（`claude remote-control`）下可以，受 `--capacity` 限制（默认 32）。但在交互模式（`claude --remote-control`）下，**每个交互进程只能有一个 remote session**。
 
 ---
 
-## 11. 实用速查
+## 12. 实用速查
 
 ```bash
 # 独立 server mode
@@ -347,15 +425,24 @@ claude --remote-control
 /remote-control release-monitor
 
 # v2.1.92+：默认会话名带 hostname 前缀；可用 --remote-control-session-name-prefix 覆盖（参数挂载在哪个子命令上以 claude --help 为准）
+
+# 所有会话自动开启 Remote Control（在 /config 中设置）
+/config
+
+# 查看登录状态和订阅信息
+/status
+
+# 手机 App 下载二维码
+/mobile
 ```
 
 ---
 
-## 12. 下一步建议
+## 13. 下一步建议
 
 - 想把外部消息直接推到会话中：继续看 [Channels与计划任务完整指南](./13-Channels与计划任务完整指南.md)
 - 想理解模型切换、1M context 和 `opusplan`：继续看 [安装指南中的模型配置章节](./01-Claude-Code完整安装指南.md#85部分模型配置安装后的进阶配置)
 
 ---
 
-> **最后更新**：2026年4月5日 | **适用版本**：Claude Code v2.1.92
+> **最后更新**：2026年4月26日 | **适用版本**：Claude Code v2.1.119
