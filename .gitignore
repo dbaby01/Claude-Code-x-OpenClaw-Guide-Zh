@@ -18,3 +18,6 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# 飞书同步脚本（含凭证配置，不提交）
+scripts/
