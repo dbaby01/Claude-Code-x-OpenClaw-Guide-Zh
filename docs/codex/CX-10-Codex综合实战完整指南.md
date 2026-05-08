@@ -10,8 +10,8 @@
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐⭐⭐ 进阶
 > - **更新日期**：2026年5月
-> - **适用版本**：Codex CLI v0.128.0（验证于 2026-04-30）/ Codex App 当前版本
-> - **信息来源**：[GitHub](https://github.com/openai/codex) | [Codex 官方文档](https://openai.com/codex)
+> - **适用版本**：Codex CLI v0.129.0（核对于 2026-05-08；以 `codex --version` 和 GitHub Releases 为准）/ Codex App 当前版本
+> - **信息来源**：[Codex App 文档](https://developers.openai.com/codex/app/) | [Codex Rules 文档](https://developers.openai.com/codex/rules) | [Codex Hooks 文档](https://developers.openai.com/codex/hooks)
 > - **前置课程**：CX-01 安装 / CX-02 App / CX-05 配置系统
 
 ---
@@ -164,31 +164,56 @@ Express + TypeScript REST API。
 # 项目级配置
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
-
-# 使用 Node.js 项目常用的 rules
-[[rules]]
-name = "allow-npm"
-allow = ["npm test", "npm run *", "npx *"]
-
-[[rules]]
-name = "allow-git-read"
-allow = ["git log", "git diff", "git status"]
 ```
+
+Rules 不写在 `config.toml` 的 `[[rules]]` 表里，而是单独放在 `.codex/rules/*.rules`。
 
 ### 4.2 Rules 文件
 
 创建 `.codex/rules/safety.rules`：
 
 ```text
-allow npm test
-allow npm run *
-allow npx *
-allow git log
-allow git diff
-allow git status
-deny git push
-deny rm -rf
-deny sudo
+prefix_rule(
+  pattern = ["npm", "test"],
+  decision = "allow",
+  justification = "允许测试命令在沙盒外运行",
+)
+
+prefix_rule(
+  pattern = ["npm", "run"],
+  decision = "prompt",
+  justification = "npm script 可能执行任意脚本，运行前确认",
+)
+
+prefix_rule(
+  pattern = ["git", "log"],
+  decision = "allow",
+  justification = "允许只读 Git 历史查看命令",
+)
+
+prefix_rule(
+  pattern = ["git", "diff"],
+  decision = "allow",
+  justification = "允许只读 Git diff 查看命令",
+)
+
+prefix_rule(
+  pattern = ["git", "status"],
+  decision = "allow",
+  justification = "允许只读 Git 状态查看命令",
+)
+
+prefix_rule(
+  pattern = ["git", "push"],
+  decision = "forbidden",
+  justification = "不要由 Codex 直接推送；先由用户 review 后手动 push",
+)
+
+prefix_rule(
+  pattern = ["rm", "-rf"],
+  decision = "forbidden",
+  justification = "禁止危险递归删除；需要清理时先列出目标路径并人工确认",
+)
 ```
 
 ### 4.3 验证效果
@@ -199,7 +224,7 @@ deny sudo
 运行 git push origin main
 ```
 
-Codex 应该被 rules 拦截或请求确认。
+Codex 应该被 rules 阻止。你也可以用 `codex execpolicy check --rules .codex/rules/safety.rules -- git push origin main` 检查匹配结果。
 
 ---
 
@@ -335,11 +360,25 @@ Codex 会通过 MCP 获取 Express 最新文档，按官方最佳实践重构代
 
 ## 第8部分：安全审查
 
-### 8.1 Hooks：提交前检查
+### 8.1 Hooks：工具调用前检查
 
-创建 `.codex/hooks/pre-commit`（示例思路，具体实现以当前 Codex hooks 配置为准）：
+Codex hooks 不是 Git pre-commit hook。当前官方写法需要先启用 feature flag，再在 `hooks.json` 或 `config.toml` 的 `[hooks]` 中配置事件脚本。示例：
 
-在 config.toml 中配置 hooks，让每次文件修改前检查是否包含敏感信息。
+```toml
+[features]
+codex_hooks = true
+
+[[hooks.PreToolUse]]
+matcher = "^Bash$"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = 'python "$(git rev-parse --show-toplevel)/.codex/hooks/pre_tool_use_policy.py"'
+timeout = 30
+statusMessage = "Checking shell command"
+```
+
+脚本文件可以放在 `.codex/hooks/` 下，但 hook 的触发关系来自配置文件，不是文件名本身。
 
 ### 8.2 审查清单
 

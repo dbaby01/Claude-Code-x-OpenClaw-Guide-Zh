@@ -10,8 +10,8 @@
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐ 零基础入门
 > - **更新日期**：2026年5月
-> - **适用版本**：Codex CLI v0.128.0（验证于 2026-04-30）/ Codex App 当前版本
-> - **信息来源**：[GitHub](https://github.com/openai/codex) | [Codex 官方文档](https://openai.com/codex)
+> - **适用版本**：Codex CLI v0.129.0（核对于 2026-05-08；以 `codex --version` 和 GitHub Releases 为准）/ Codex App 当前版本
+> - **信息来源**：[Codex GitHub](https://github.com/openai/codex) | [Codex App 文档](https://developers.openai.com/codex/app/) | [Codex Models 文档](https://developers.openai.com/codex/models)
 
 ---
 
@@ -234,7 +234,7 @@ Codex SDK 是开发者能力，不是普通用户安装 Codex 的必经路径。
 
 ### 7.1 版本号怎么写
 
-截至 2026-05-07，`openai/codex` GitHub Releases 最新 CLI 为 v0.128.0（2026-04-30）。Codex CLI 迭代很快，教程应同时写“当前核对版本”和“本机验证命令”：
+截至 2026-05-08，`openai/codex` GitHub Releases 已更新到 v0.129.0（2026-05-08）。Codex CLI 迭代很快，教程应同时写“当前核对版本”和“本机验证命令”，不要把某个 release 永久写成最新：
 
 ```bash
 codex --version

@@ -10,8 +10,8 @@
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐⭐⭐ 进阶
 > - **更新日期**：2026年5月
-> - **适用版本**：Codex CLI v0.128.0（验证于 2026-04-30）/ Claude Code v2.1.133（验证于 2026-05-08）
-> - **信息来源**：[Codex GitHub](https://github.com/openai/codex) | [Claude Code GitHub](https://github.com/anthropics/claude-code) | [Codex 官方文档](https://openai.com/codex) | [Claude Code 官方文档](https://docs.anthropic.com)
+> - **适用版本**：Codex CLI v0.129.0（核对于 2026-05-08；以 `codex --version` 和 GitHub Releases 为准）/ Claude Code v2.1.133（验证于 2026-05-08）
+> - **信息来源**：[Codex GitHub](https://github.com/openai/codex) | [Codex 官方文档](https://developers.openai.com/codex/) | [Claude Code GitHub](https://github.com/anthropics/claude-code) | [Claude Code 官方文档](https://docs.anthropic.com)
 
 ---
 

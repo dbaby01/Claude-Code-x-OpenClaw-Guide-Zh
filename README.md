@@ -7,7 +7,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.133-green.svg)
 ![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.3.28-blue.svg)
-![Codex](https://img.shields.io/badge/Codex-v0.128.0-orange.svg)
+![Codex](https://img.shields.io/badge/Codex-v0.129.0-orange.svg)
 
 **AI 三顶流 · 中文教程扛把子**
 
@@ -86,7 +86,7 @@
 - **👶 小白友好**：90+术语解释、50+生活类比、230+FAQ
 - **💻 实战导向**：90+个可运行代码示例，边学边练
 - **📊 质量保证**：关键版本号与 CLI 行为优先对照 **官方 Release / 文档** 修订；细节仍可能随上游快速变化，请以你本机版本为准
-- **🔄 持续更新**：适配最新版本（Claude Code v2.1.133 / OpenClaw 稳定版 v2026.3.28 / Codex CLI v0.128.0，实际以 GitHub Releases 和本机 `codex --version` 为准）
+- **🔄 持续更新**：适配最新版本（Claude Code v2.1.133 / OpenClaw 稳定版 v2026.3.28 / Codex CLI v0.129.0，实际以 GitHub Releases 和本机 `codex --version` 为准）
 
 ---
 
@@ -240,7 +240,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 | **覆盖消息平台** | 15+ 个（OpenClaw） |
 | **Claude Code版本** | 2.1.133（2026-05-08 验证） |
 | **OpenClaw版本** | 稳定版 **v2026.3.28**（2026-04-05 对照 [Releases](https://github.com/openclaw/openclaw/releases)）；列表含预发布时请自行取舍 |
-| **Codex版本** | CLI v0.128.0（2026-04-30 GitHub Release）；本仓库按 2026-05 官方文档修订，实际以 `codex --version` 与 [GitHub](https://github.com/openai/codex) 为准 |
+| **Codex版本** | CLI v0.129.0（2026-05-08 GitHub Release）；本仓库按 2026-05 官方文档修订，实际以 `codex --version` 与 [GitHub](https://github.com/openai/codex) 为准 |
 
 ---
 
@@ -254,7 +254,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 |------|-------------|---------|---------|
 | Claude Code | v2.1.133 | 2026-05-08 | [GitHub Releases](https://github.com/anthropics/claude-code/releases) |
 | OpenClaw | 稳定版 v2026.3.28 | 2026-04-05 | [GitHub Releases](https://github.com/openclaw/openclaw/releases) |
-| Codex CLI | v0.128.0 | 2026-04-30 | [GitHub Releases](https://github.com/openai/codex) |
+| Codex CLI | v0.129.0 | 2026-05-08 | [GitHub Releases](https://github.com/openai/codex) |
 
 > ⚠️ **版本号会随上游更新而失效**。教程中标注的版本号是编写/验证时的快照，不代表实时最新。遇到命令或参数不一致时，优先查官方 Release Notes 和 CLI 帮助（`--help`）。
 
@@ -387,7 +387,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 - CX-11 Codex vs Claude Code：全面对比、双工具协作实战、社区生态
 
 **验证版本**
-- Codex CLI: v0.128.0（2026-04-30 GitHub Release）；以本机 `codex --version` 和 [GitHub Releases](https://github.com/openai/codex) 为准
+- Codex CLI: v0.129.0（2026-05-08 GitHub Release）；以本机 `codex --version` 和 [GitHub Releases](https://github.com/openai/codex) 为准
 - Codex App: 以桌面 App 内更新与 OpenAI 官方 Codex App 文档为准
 
 ### v3.1 (2026-03-18) | Claude Code v2.1.69-v2.1.78 新功能补充

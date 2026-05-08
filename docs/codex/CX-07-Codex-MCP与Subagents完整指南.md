@@ -10,8 +10,8 @@
 > - **预计学时**：3-4小时
 > - **难度等级**：⭐⭐⭐ 进阶
 > - **更新日期**：2026年5月
-> - **适用版本**：Codex CLI v0.128.0（验证于 2026-04-30）/ Codex App 当前版本
-> - **信息来源**：[GitHub](https://github.com/openai/codex) | [Codex 官方文档](https://openai.com/codex)
+> - **适用版本**：Codex CLI v0.129.0（核对于 2026-05-08；以 `codex --version` 和 GitHub Releases 为准）/ Codex App 当前版本
+> - **信息来源**：[Codex MCP 文档](https://developers.openai.com/codex/mcp) | [Codex CLI 文档](https://developers.openai.com/codex/cli/) | [Codex GitHub](https://github.com/openai/codex)
 > - **前置课程**：CX-01 安装 / CX-03 CLI / CX-05 配置系统
 
 ---

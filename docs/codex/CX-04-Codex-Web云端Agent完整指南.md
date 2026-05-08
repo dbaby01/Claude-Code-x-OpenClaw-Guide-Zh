@@ -11,7 +11,7 @@
 > - **难度等级**：⭐⭐ 基础进阶
 > - **更新日期**：2026年5月
 > - **适用版本**：Codex Web / Cloud 当前版本（以 chatgpt.com/codex 实际界面为准）
-> - **信息来源**：[GitHub](https://github.com/openai/codex) | [Codex 官方文档](https://openai.com/codex)
+> - **信息来源**：[Codex Web 文档](https://developers.openai.com/codex/cloud) | [Codex Models 文档](https://developers.openai.com/codex/models) | [Codex GitHub](https://github.com/openai/codex)
 > - **前置课程**：CX-01 Codex 安装与认证完整指南
 > - **重要说明**：Codex 云端功能、套餐开放范围和速率限制会变化，本文只写稳定工作流，不写固定额度、固定并发、固定容器规格。
 
