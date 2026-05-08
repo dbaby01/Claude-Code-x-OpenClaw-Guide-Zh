@@ -10,10 +10,11 @@
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐⭐⭐ 进阶
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.119（验证于 2026-04-26）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08）
 > - **信息来源**：
 >   - [Claude Code 官方文档 - Channels](https://code.claude.com/docs/en/channels)
 >   - [Claude Code 官方文档 - Scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks)
+>   - [GitHub Releases v2.1.128+](https://github.com/anthropics/claude-code/releases)
 
 ---
 
@@ -61,8 +62,9 @@ Channels 和计划任务，解决的是两类不同问题：
 - **research preview**
 - 需要 **Claude Code v2.1.80+**
 - 需要 **claude.ai 登录**
-- **不支持 API key / Console auth**
 - Team / Enterprise 默认可能关闭，需要管理员启用
+
+**v2.1.128 变更**：`--channels` 现在也支持 **Console auth（API key）登录**，不再仅限 claude.ai 登录。如果你之前因为 API key 模式无法使用 Channels，可以重新尝试。
 
 ---
 
@@ -587,4 +589,4 @@ claude --resume
 
 ---
 
-> **最后更新**：2026年4月26日 | **适用版本**：Claude Code v2.1.119
+> **最后更新**：2026年5月8日 | **适用版本**：Claude Code v2.1.133

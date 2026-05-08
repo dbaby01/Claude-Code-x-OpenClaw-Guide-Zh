@@ -10,7 +10,7 @@
 > - **预计学时**：4-6小时
 > - **难度等级**：⭐⭐ 入门级（有Claude Code基础即可）
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（验证于2026-04-05）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08）
 > - **前置要求**：已完成Claude Code安装和基础使用
 
 ---
@@ -38,7 +38,7 @@
 
 因此，下面正文请用“事件族 + 处理器类型 + 典型场景”来理解，而不是背一个固定数量。
 
-### 与 Hooks 相关的 v2.1.90 / v2.1.92 变更（GitHub Release 摘录）
+### 与 Hooks 相关的 v2.1.90 → v2.1.133 变更（GitHub Release 摘录）
 
 下列句子均来自官方 *What's changed*，**英文原文**便于逐字核对；教程不展开实现细节。
 
@@ -50,6 +50,23 @@
 **v2.1.92**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.92)）：
 
 - *Fixed prompt-type Stop hooks incorrectly failing when the small fast model returns `ok:false`, and restored `preventContinuation:true` semantics for non-Stop prompt-type hooks*
+
+**v2.1.121**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.121)）：
+
+- *Hook JSON input now includes `effort.level` field, and `$CLAUDE_EFFORT` environment variable is set for hook subprocesses*
+
+这意味着 Hook 脚本现在可以感知当前 effort 等级（low/medium/high/xhigh/max），据此调整行为。例如，`xhigh` 时跳过某些轻量检查以避免打断深度推理。
+
+**v2.1.133**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.133)）：
+
+- *`PostToolUse` hooks can now replace tool output for ALL tools via `hookSpecificOutput.updatedToolOutput`*
+- *Hook output now includes `duration_ms` field*
+
+**重点变化**：
+
+1. **`PostToolUse` 可替换工具输出**：以前 `PostToolUse` 只能做格式化或记录，现在可以通过 `hookSpecificOutput.updatedToolOutput` 字段替换工具的实际输出内容。适用于所有工具，不再局限于特定工具类型。
+2. **`duration_ms`**：Hook 执行耗时现在以毫秒级精度记录，方便性能监控和超时告警。
+3. **`effort.level`**：Hook 接收的 JSON input 新增 `effort.level` 字段，环境变量 `$CLAUDE_EFFORT` 同步可用。
 
 **阅读提示**：若 Hook 行为与上述条目相关但仍异常，以当前安装的 `claude --version` 及之后新 release 为准。
 
@@ -909,17 +926,20 @@ sys.exit(0)
 
 > ⚠️ **重要：PostToolUse Hook的输出机制**
 >
-> PostToolUse Hook**无法向用户输出信息**！
+> **v2.1.133 前**：PostToolUse Hook 无法向用户输出信息，只能做后处理（格式化、备份、日志）。
+>
+> **v2.1.133 起**：PostToolUse Hook 可以通过 `hookSpecificOutput.updatedToolOutput` **替换工具的实际输出内容**，适用于所有工具类型。
 >
 > - ✅ **可以做**：执行后处理任务（格式化、备份、测试、写日志文件）
-> - ❌ **不能做**：向用户显示信息（Claude Code只会显示"Hook执行成功/失败"）
+> - ✅ **v2.1.133+ 可以做**：通过 `hookSpecificOutput.updatedToolOutput` 替换工具输出
 > - ❌ **常见误区**：`print(..., file=sys.stderr)`不会显示在界面，只在终端可见
 >
-> 如果需要向用户输出信息，请使用**UserPromptSubmit Hook**的`additionalContext`机制。
+> 如果需要向用户注入额外上下文信息，也可以使用 **UserPromptSubmit Hook** 的 `additionalContext` 机制。
 
-PostToolUse Hook**不返回决策**（工具已经执行完了），只能：
+PostToolUse Hook**不返回决策**（工具已经执行完了），可以：
 - 执行后处理任务（格式化、备份、测试）
 - 写入日志文件（用于调试）
+- **v2.1.133+**：通过 `hookSpecificOutput.updatedToolOutput` 替换工具输出
 
 #### 完整示例1：自动代码格式化
 

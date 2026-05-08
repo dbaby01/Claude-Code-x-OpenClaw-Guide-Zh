@@ -10,7 +10,7 @@
 > - **预计学时**：4-6小时
 > - **难度等级**：⭐⭐ 入门级
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（验证于2026-04-05）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08）
 > - **信息来源**：[内置命令参考](https://code.claude.com/docs/en/commands) | [Skills 官方文档](https://code.claude.com/docs/en/slash-commands) | [Claude Command Suite](https://github.com/qdhenry/Claude-Command-Suite) | [最佳实践](https://www.anthropic.com/engineering/claude-code-best-practices)
 > - **前置要求**：已完成Claude Code安装和基础使用
 
@@ -48,6 +48,23 @@
 
 - 你在维护旧仓库或需要最轻量的本地 slash 包装：继续看 `.claude/commands/` 示例。
 - 你在新建团队工作流、可复用能力包、可分享的 slash 入口：优先同时参考 [07-Skills定制完整指南](./07-Skills定制完整指南.md)。
+
+### v2.1.93 → v2.1.133 命令系统增强
+
+**v2.1.105+**：
+- **`/proactive`**：`/loop` 的别名，功能完全相同。如果你觉得 "loop" 不够语义化，可以用 `/proactive`。
+- **`/model` 增强选择器**：模型切换界面增加了更多信息和筛选选项。
+
+**v2.1.114+**：
+- **`/theme`** 支持自定义颜色方案（Plugin 可声明 color palette）。
+- **`/color` 随机模式**：直接输入 `/color random` 随机分配颜色，适合多会话管理。
+
+**v2.1.121+**：
+- **`/mcp` 工具计数**：`/mcp` 列表现在显示每个 MCP Server 提供的工具数量。
+- **`/skills` 搜索过滤**：支持关键词过滤（`/skills <关键词>`），方便管理大量 Skills。
+
+**v2.1.129+**：
+- **`skillOverrides` 设置**：可通过 settings 控制每个 Skill 的可见性（`off` / `user-invocable-only` / `name-only`）。详见 [07-Skills定制完整指南](./07-Skills定制完整指南.md)。
 
 ---
 
@@ -513,13 +530,13 @@ You: /hello
 
 > 💡 **提示**：输入 `/` 然后按 `Tab` 键可以查看所有可用命令。
 
-### v2.1.69+ 到 v2.1.92 的常用命令增量 🆕
+### v2.1.69+ 到 v2.1.133 的常用命令增量 🆕
 
-以下命令是 Claude Code 在 2.1.69 之后持续扩展、到 2.1.92 仍然值得优先掌握的一批能力：
+以下命令是 Claude Code 在 2.1.69 之后持续扩展、到 v2.1.133 仍然值得优先掌握的一批能力：
 
 - `/powerup`：交互式课程（**v2.1.90**，官方 release 原文：*interactive lessons teaching Claude Code features with animated demos*）
 - `/loop`：bundled skill 形式的定时循环任务
-- `/effort`：推理深度控制
+- `/effort`：推理深度控制（五级：low/medium/high/**xhigh**/max）
 - `/sandbox`：沙箱隔离
 - `/color`：会话颜色
 - `/copy`：复制回复
@@ -532,6 +549,8 @@ You: /hello
 - `/insights`：查看会话和使用洞察
 - `/schedule`：计划性任务入口
 - `/statusline`：状态行定制
+- `/skills`：查看和搜索已安装的 Skills（支持关键词过滤）
+- `/proactive`：`/loop` 的别名（**v2.1.105+**）
 
 #### /powerup - 交互式功能教程（v2.1.90+）
 
@@ -570,8 +589,10 @@ You: /powerup
 
 ```bash
 /effort low     # ○ 快速简洁
-/effort medium  # ◐ 平衡模式（默认）
+/effort medium  # ◐ 平衡模式
 /effort high    # ● 深度推理
+/effort xhigh   # ◉ 深度推理（推荐 Opus 4.7 默认）
+/effort max     # ⬤ 极限推理
 /effort auto    # 重置为自动判断
 ```
 
@@ -580,8 +601,14 @@ You: /powerup
 | low | ○ | 最少 | 简单问答、格式转换 |
 | medium | ◐ | 中等 | 日常开发、代码修改 |
 | high | ● | 较多 | 架构设计、复杂调试 |
+| **xhigh** | ◉ | 多 | **深度推理，Opus 4.7 推荐默认** |
+| max | ⬤ | 最多 | 极限推理，关键决策 |
 
-> 💡 **省钱技巧**：批量处理简单任务时切换到 `low`，关键决策时切换到 `high`。
+> 💡 **省钱技巧**：批量处理简单任务时切换到 `low`，关键决策时切换到 `xhigh`。
+
+> 💡 **交互式滑块**：直接输入 `/effort`（不带参数）会弹出交互式滑块，拖动选择级别。
+
+> 💡 **其他设置方式**：`claude --effort xhigh`（CLI 参数）或 `CLAUDE_CODE_EFFORT_LEVEL=xhigh`（环境变量）。
 
 #### /sandbox - 沙箱隔离模式
 
@@ -1942,6 +1969,8 @@ allowed-tools:
 |                    | `/sandbox`       | 沙箱隔离模式  |
 |                    | `/color`         | 会话颜色设置  |
 |                    | `/copy`          | 复制AI回复    |
+|                    | `/skills`        | 查看/搜索 Skills 🆕 |
+|                    | `/proactive`     | `/loop` 别名（v2.1.105+）🆕 |
 
 ### frontmatter配置速查
 

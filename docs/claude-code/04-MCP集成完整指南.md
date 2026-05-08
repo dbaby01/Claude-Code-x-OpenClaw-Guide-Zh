@@ -10,7 +10,7 @@
 > - **预计学时**：4-6小时
 > - **难度等级**：⭐⭐ 入门级（有Claude Code基础即可）
 > - **更新日期**：2026年4月
-> - **适用版本**：MCP规范 2025-11-25 / Claude Code v2.1.92（验证于2026-04-05）
+> - **适用版本**：MCP规范 2025-11-25 / Claude Code v2.1.133（验证于 2026-05-08）
 > - **前置要求**：已完成Claude Code安装和基础使用
 
 ---
@@ -22,13 +22,21 @@
 - **MCP 工具懒加载不是“新鲜功能提示”了**，在当前版本里应把它当成默认能力来理解。
 - **MCP Elicitation、远程 MCP、MCP Apps** 现在应一起看成同一代 MCP 体验增强，而不是零散补丁。
 
-### 与 MCP / 传输相关的 v2.1.90 变更（GitHub Release 摘录）
+### 与 MCP / 传输相关的 v2.1.90 → v2.1.133 变更（GitHub Release 摘录）
 
-下列条目直接摘自 [anthropics/claude-code v2.1.90 · What's changed](https://github.com/anthropics/claude-code/releases/tag/v2.1.90)（英文原文，便于核对；未收录与本节主题无关的其它条目）：
+下列条目直接摘自官方 *What's changed*（英文原文，便于核对；未收录与本节主题无关的其它条目）：
+
+**v2.1.90**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.90)）：
 
 - *Improved performance: eliminated per-turn JSON.stringify of MCP tool schemas on cache-key lookup*
 - *Improved performance: SSE transport now handles large streamed frames in linear time (was quadratic)*
 - *Fixed `--resume` causing a full prompt-cache miss on the first request for users with deferred tools, MCP servers, or custom agents (regression since v2.1.69)*
+
+**v2.1.121**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.121)）：
+
+- *Added `alwaysLoad` config option for MCP servers to skip ToolSearch deferral*
+
+**v2.1.128-133**：MCP OAuth proxy 和 mTLS 相关修复，Gateway `/v1/models` 发现增强（具体条目请查看对应 release notes）。
 
 **阅读提示**：属于客户端实现层优化与修复；若你遇到「工具很多时变慢」「SSE 大帧」「带 MCP 的会话 resume 后首条 prompt cache」等现象，可先对照该 release 与当前 `claude --version`，再决定是否升级。
 
@@ -866,6 +874,27 @@ Claude Code：
 2. [加载] 按需加载 slack 工具定义
 3. [调用] mcp__slack__read_channel(...)
 ```
+
+**v2.1.121+ 新增：`alwaysLoad` 跳过懒加载**
+
+如果你的某个 MCP 服务器提供的工具几乎每次会话都会用到（比如 GitHub MCP），你可以在配置中设 `alwaysLoad: true`，让它的工具跳过 ToolSearch 延迟，始终立即可用：
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "alwaysLoad": true
+    }
+  }
+}
+```
+
+- `alwaysLoad: true`：工具定义直接注入上下文，无需 ToolSearch 搜索
+- 不设或 `alwaysLoad: false`：走标准 ToolSearch 懒加载（默认）
+
+**适用场景**：高频使用的核心 MCP（如 GitHub、数据库），设 `alwaysLoad` 可省去每次搜索的开销；低频 MCP 保持默认懒加载即可。
 
 #### MCP Elicitation（交互式信息请求，v2.1.69+）
 
@@ -2337,7 +2366,7 @@ npm publish --access public
 **更新日期**：2026年4月5日
 **版本**：V1.4（v2.1.90 release 摘录入差量）
 **字数统计**：约3,500行 / 28,000字
-**适用版本**：MCP规范 2025-11-25 / Claude Code v2.1.92
+**适用版本**：MCP规范 2025-11-25 / Claude Code v2.1.133
 
 ---
 

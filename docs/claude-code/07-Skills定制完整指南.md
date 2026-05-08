@@ -10,7 +10,7 @@
 > - **预计学时**：8-10小时
 > - **难度等级**：⭐⭐ 入门级（有Claude Code基础即可）
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（验证于 2026-04-05）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08）
 > - **前置要求**：已完成Claude Code安装和Commands基础使用
 > - **🆕 专属内容**：Hooks系统、Forked Sub-Agents、Hot Reloading
 
@@ -1860,6 +1860,49 @@ file .claude/skills/你的skill/SKILL.md
 ```
 
 这会显示所有被识别的Skills及其基本信息。
+
+---
+
+### 7.3 v2.1.129+ 新增：`skillOverrides` 设置
+
+当你的项目或团队安装了大量 Skills 时，有些可能暂时不想用。从 **v2.1.129** 起，Claude Code 支持 `skillOverrides` 设置来控制每个 Skill 的可见性。
+
+#### 三种覆盖状态
+
+| 值 | 效果 |
+|---|---|
+| `off` | 完全隐藏该 Skill（等同于不存在） |
+| `user-invocable-only` | 只保留 `/` 手动调用，禁止 Claude 自动激活 |
+| `name-only` | 只在 `/skills` 列表中显示名称，不加载任何指令 |
+
+#### 配置位置
+
+`skillOverrides` 写在 settings 文件中（项目级 `.claude/settings.json` 或用户级 `~/.claude/settings.json`）：
+
+```json
+{
+  "skillOverrides": {
+    "gongzhonghao-writer": "user-invocable-only",
+    "legacy-helper": "off",
+    "experimental-tool": "name-only"
+  }
+}
+```
+
+**适用场景**：
+- 团队有几十个 Skills，但某个项目只想用其中几个 → 把其余设为 `off`
+- 某个 Skill 自动激活太频繁，但不舍得删 → 改为 `user-invocable-only`
+- 排查 Skill 冲突时，临时关闭部分 Skill
+
+### 7.4 `/skills` 搜索过滤
+
+当你安装了大量 Skills 时，直接输入 `/skills` 列表会很长。在较新版本中，`/skills` 支持搜索过滤：
+
+```text
+/skills <关键词>
+```
+
+例如 `/skills comment` 会过滤出名称或描述中包含 "comment" 的 Skill。这在管理十几个以上 Skill 时非常有用。
 
 ---
 

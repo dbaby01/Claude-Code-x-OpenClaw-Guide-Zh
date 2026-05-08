@@ -10,7 +10,7 @@
 > - **预计学时**：4-6小时
 > - **难度等级**：⭐⭐ 入门级
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（截至 2026-04 验证；v2.1.90+ 插件市场 env 见文内 release 摘录）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08；v2.1.90+ 插件市场 env 见文内 release 摘录）
 
 ---
 
@@ -36,6 +36,22 @@
 - **Plugin 的边界更清晰了**：它不只是“Commands + Skills + MCP 配置”，还涉及 market、scope、manifest、agents、hooks、LSP、bin、settings 等运行面。
 
 因此，下面请把 `/plugin` 视为主路径，把 `--plugin-dir` 视为本地开发补充路径。
+
+### v2.1.114+ → v2.1.133 变更
+
+**v2.1.114**：新增**自定义主题**能力。Plugin 现在可以通过 manifest 声明颜色主题（color palette），用户也可以在 `/theme` 中选择。这使 Plugin 不仅提供工具和命令，还能定制 Claude Code 的视觉体验。
+
+**v2.1.121+**：
+
+- `--plugin-url`：直接通过 URL 加载远程 Plugin（如 GitHub 仓库的 ZIP 包），无需先 clone
+- `--plugin-dir` 现在也支持加载 `.zip` 文件（解压后自动加载）
+- Manifest 支持新的 `experimental` 字段，用于声明实验性功能
+
+**v2.1.126**：新增 `plugin prune` 命令，清理已安装但不再被任何项目引用的 Plugin，释放磁盘空间。
+
+```text
+/plugin prune
+```
 
 ### 环境变量：`CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE`（v2.1.90）
 
@@ -146,7 +162,7 @@ Plugin = manifest + runtime resources + optional markets/scope + 文档
 
 **官方数据**：
 
-- **当前版本**：Claude Code v2.1.92（2026年4月验证）
+- **当前版本**：Claude Code v2.1.133（2026年5月验证）
 - **官方市场**：✅ 已上线，可通过 `/plugin` 和网页入口协同使用
 - **社区Plugin**：持续增长中
 
@@ -744,4 +760,4 @@ my-plugin/
 
 ---
 
-> **最后更新**：2026年4月5日 | **适用版本**：Claude Code v2.1.92
+> **最后更新**：2026年5月8日 | **适用版本**：Claude Code v2.1.133

@@ -10,7 +10,7 @@
 > - **预计学时**：2-3小时（原生安装更简单！）
 > - **难度等级**：⭐ 零基础入门
 > - **更新日期**：2026年4月
-> - **适用版本**：Claude Code v2.1.92（验证于 2026-04-05）
+> - **适用版本**：Claude Code v2.1.133（验证于 2026-05-08）
 > - **重要更新**：当前同时支持原生安装与标准 npm 安装；原生更省心，npm 路径仍然受支持且需要 Node.js 18+
 
 ---
@@ -1375,16 +1375,18 @@ You: █
 **安全使用建议（Anthropic官方）：**
 
 1. **容器隔离**：在Docker容器中使用（无网络访问）
-2. **白名单限制**：配置 `.claude/config.json`
+2. **白名单限制**：配置 `.claude/settings.json`（权限通过 `permissions.allow` 管理，详见 [官方权限文档](https://code.claude.com/docs/en/permissions)）
    ```json
    {
-     "allowedTools": [
-       "Read",
-       "Grep",
-       "Glob",
-       "Bash(npm test)",
-       "Bash(git status)"
-     ]
+     "permissions": {
+       "allow": [
+         "Read",
+         "Grep",
+         "Glob",
+         "Bash(npm test)",
+         "Bash(git status)"
+       ]
+     }
    }
    ```
 3. **Git保护**：确保代码已提交，随时可回滚
@@ -3044,34 +3046,38 @@ claude --model opus
 
 `/effort` 控制的是**推理强度**，不是换模型。
 
-可用值：
+可用值（v2.1.105-113 起新增 `xhigh`）：
 
 - `low`
 - `medium`
 - `high`
+- **`xhigh`**（推荐 Opus 4.7 默认）
 - `max`
 - `auto`
 
 | 级别 | 含义 | 适合场景 |
 |------|------|----------|
 | `low` | 更快、更省 | 简单问答、格式转换 |
-| `medium` | 默认平衡 | 日常编码主力 |
+| `medium` | 平衡 | 日常编码 |
 | `high` | 更深推理 | 复杂调试、架构分析 |
-| `max` | 最深推理，仅 Opus 4.6 | 极复杂问题，成本更高 |
+| **`xhigh`** | **深度推理（推荐 Opus 4.7 默认）** | **深度重构、关键决策** |
+| `max` | 最深推理 | 极复杂问题，成本最高 |
 | `auto` | 回到模型默认 | 不想手动管时 |
 
 **官方建议**：
 
-- **大多数编码任务用 `medium`**
-- `high` 和 `max` 只在确实需要时开
+- **Opus 4.7 用户推荐默认 `xhigh`**
+- `low`/`medium` 适合 Sonnet/Haiku 模型日常使用
+- `max` 只在确实需要时开
 - 如果只是偶发一次深推理，不一定非要改全局设置，可以在 prompt 中写 `ultrathink`
 
 **配置方式**：
 
-- `/effort low|medium|high|max|auto`
+- `/effort low|medium|high|xhigh|max|auto`
+- `/effort` 不带参数弹出交互式滑块
 - `/model` 面板里调节
-- `claude --effort high`
-- `CLAUDE_CODE_EFFORT_LEVEL`
+- `claude --effort xhigh`
+- `CLAUDE_CODE_EFFORT_LEVEL=xhigh`
 - `settings.json` 中的 `effortLevel`
 - skill / subagent frontmatter 里的 `effort`
 
@@ -3079,7 +3085,7 @@ claude --model opus
 
 ### 8.5.4 1M 上下文怎么用
 
-现在 `Opus 4.6` 和 `Sonnet 4.6` 都支持 1M 上下文，但是否可见、是否默认可用，取决于计划和部署方式。
+现在 `Opus 4.7` 和 `Sonnet 4.6` 都支持 1M 上下文，但是否可见、是否默认可用，取决于计划和部署方式。
 
 #### 最简单的用法
 
@@ -3091,7 +3097,7 @@ claude --model opus
 或者：
 
 ```bash
-/model claude-opus-4-6[1m]
+/model claude-opus-4-7[1m]
 ```
 
 #### 什么情况下该开 1M
