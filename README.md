@@ -131,21 +131,24 @@
 
 ### 🤖 Part 3：Codex — OpenAI 编程 Agent 平台
 
-Codex 学习主线：先看 CX-01 安装认证，再重点看 CX-02 Codex App；其余 CX-03 到 CX-09 作为 App 生态补充和团队落地参考；CX-10 综合实战串联全系列；CX-11 为可选对比附录。
+Codex 学习主线：**只有 Codex App 一条主线**。先看 CX-01 安装认证和 CX-02 App 桌面工作流；CX-03 到 CX-10 按功能拆开讲 Commands、项目指令、MCP、Skills、Plugins、Subagents、Automations、Review / GitHub；CX-11 和 CX-12 分别是 Web / Cloud、CLI 辅助；CX-13 安全企业；CX-14 为 Claude Code 对比附录。
 
 | 序号 | 教程名称 | 学时 | 难度 | 说明 |
 |------|---------|------|------|------|
-| CX-01 | [Codex安装与认证完整指南](docs/codex/CX-01-Codex安装与认证完整指南.md) | 2-3h | ⭐ | App 优先安装、ChatGPT 登录、Windows/macOS、CLI/API Key 仅作补充 |
-| CX-02 | [Codex App桌面指挥中心完整指南](docs/codex/CX-02-Codex-App桌面指挥中心完整指南.md) | 4-6h | ⭐⭐ | App 主教程：Local/Worktree、Review、Settings、Plugins、Automations、Browser、Computer Use、Commands、Windows 排障 |
-| CX-03 | [Codex CLI终端Agent完整指南](docs/codex/CX-03-Codex-CLI终端Agent完整指南.md) | 3-4h | ⭐⭐ | App 补充：排查配置、MCP、非交互任务时再看 |
-| CX-04 | [Codex Web云端Agent完整指南](docs/codex/CX-04-Codex-Web云端Agent完整指南.md) | 2-3h | ⭐⭐ | App 补充：需要云端后台任务或 PR 工作流时再看 |
-| CX-05 | [Codex配置系统完整指南](docs/codex/CX-05-Codex配置系统完整指南.md) | 4-6h | ⭐⭐ | App 补充：AGENTS.md、config.toml、Rules、Hooks、Plugins、MCP |
-| CX-06 | [Codex Skills技能系统完整指南](docs/codex/CX-06-Codex-Skills技能系统完整指南.md) | 3-5h | ⭐⭐⭐ | App 补充：Skills 工作流、自定义 skill、团队共享 |
-| CX-07 | [Codex MCP与Subagents完整指南](docs/codex/CX-07-Codex-MCP与Subagents完整指南.md) | 3-4h | ⭐⭐⭐ | App 补充：接外部工具、多 Agent、MCP 配置边界 |
-| CX-08 | [Codex Automations与集成完整指南](docs/codex/CX-08-Codex-Automations与集成完整指南.md) | 3-4h | ⭐⭐ | App 自动化：Triage、thread automation、test automation、插件/MCP 集成 |
-| CX-09 | [Codex沙箱安全与企业指南](docs/codex/CX-09-Codex沙箱安全与企业指南.md) | 3-4h | ⭐⭐⭐ | App 安全：沙盒、审批、rules、hooks、插件/MCP 权限、Memories |
-| CX-10 | [Codex综合实战完整指南](docs/codex/CX-10-Codex综合实战完整指南.md) | 2-3h | ⭐⭐⭐ | 全系列串联实战：从零搭建项目、配置、Skills、MCP、Automations、安全全流程 |
-| CX-11 | [Codex与Claude Code对比实战指南](docs/codex/CX-11-Codex与Claude-Code对比实战指南.md) | 2-3h | ⭐⭐⭐ | 可选附录：双工具协作、MCP 共享、团队决策 |
+| CX-01 | [Codex App 安装与认证](docs/codex/CX-01-Codex-App安装与认证完整指南.md) | 1-2h | ⭐ | Windows Microsoft Store / winget、首次防火墙、登录、本地项目和第一个线程 |
+| CX-02 | [Codex App 桌面工作流](docs/codex/CX-02-Codex-App桌面工作流完整指南.md) | 3-4h | ⭐⭐⭐ | App 主控台：Thread、Local、Worktree、Review、Settings、功能全景 |
+| CX-03 | [Commands 工作流入口](docs/codex/CX-03-Codex-Commands工作流入口完整指南.md) | 2-3h | ⭐⭐⭐ | App 里的 slash commands、/status、/plan-mode、/review、/mcp，以及 /goal、/loop 等实验入口的确认方法 |
+| CX-04 | [项目指令、权限与配置](docs/codex/CX-04-Codex项目指令权限配置完整指南.md) | 2-3h | ⭐⭐⭐ | AGENTS.md、App Settings、权限、沙盒、Rules、Hooks |
+| CX-05 | [MCP 外部工具连接](docs/codex/CX-05-Codex-MCP外部工具完整指南.md) | 2-3h | ⭐⭐⭐ | App 中接浏览器、数据库、文档源、内部 API 等外部工具 |
+| CX-06 | [Skills 可复用工作流](docs/codex/CX-06-Codex-Skills可复用工作流完整指南.md) | 2-3h | ⭐⭐⭐ | 在 App 中点名、触发、编写和共享 Skills |
+| CX-07 | [Plugins / Connectors](docs/codex/CX-07-Codex-Plugins连接器完整指南.md) | 2-3h | ⭐⭐⭐ | App 能力包、GitHub/Gmail/Drive/Slack 等账号连接 |
+| CX-08 | [Subagents 多 Agent 协作](docs/codex/CX-08-Codex-Subagents多Agent协作完整指南.md) | 2-3h | ⭐⭐ | App 中的并行分析、分工实现、只读审查与 worktree 配合 |
+| CX-09 | [Automations 后台任务](docs/codex/CX-09-Codex-Automations后台任务完整指南.md) | 2-3h | ⭐⭐ | App 里的周期检查、提醒、monitor、Skills + Automation |
+| CX-10 | [Review / GitHub / PR](docs/codex/CX-10-Codex-Review-GitHub-PR完整指南.md) | 2-3h | ⭐⭐⭐ | 从 App diff 到 GitHub PR、CI 修复和 Cloud 接力 |
+| CX-11 | [Web / Cloud 辅助路径](docs/codex/CX-11-Codex-Web-Cloud辅助指南.md) | 1-2h | ⭐⭐ | 远程仓库、云端 environment、PR 长任务；不是 App 主线 |
+| CX-12 | [CLI 辅助指南](docs/codex/CX-12-Codex-CLI辅助完整指南.md) | 1-2h | ⭐⭐ | 终端排查、CI、codex review、MCP/plugin 管理；不是主线 |
+| CX-13 | [安全与企业基线](docs/codex/CX-13-Codex安全企业完整指南.md) | 2-3h | ⭐⭐⭐ | 审批、沙盒、Rules、Hooks、MCP/Plugins/Automations 权限 |
+| CX-14 | [Codex 与 Claude Code 对比](docs/codex/CX-14-Codex与Claude-Code对比指南.md) | 1-2h | ⭐⭐ | 从 App 主线出发做双工具选择和共存 |
 
 ---
 
@@ -207,7 +210,7 @@ Step 4（15分钟）：OC-04 模型配置 → 接入 AI 模型
 
 ```
 Step 1（10分钟）：CX-01 安装与认证 → 装好 Codex + 配好认证
-Step 2（10分钟）：CX-02 App 或 CX-03 CLI → 跑起第一个任务
+Step 2（10分钟）：CX-02 App 桌面工作流 → 跑起第一个 App 线程
 完成 ✅ 能用Codex + 能让AI写代码
 ```
 
@@ -221,9 +224,9 @@ Week 6  ：Claude Code Agent-SDK + 综合实战
 Week 7  ：OpenClaw 安装 + 快速开始 + 模型配置
 Week 8  ：OpenClaw 消息平台 + 技能系统 + 记忆系统
 Week 9  ：OpenClaw 多Agent + Docker部署 + 安全
-Week 10 ：Codex 安装 + App + CLI 基础
-Week 11 ：Codex 配置系统 + Skills + MCP
-Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
+Week 10 ：Codex App 安装 + App 桌面工作流 + Commands
+Week 11 ：项目指令 + MCP + Skills + Plugins / Connectors + Subagents
+Week 12 ：Automations + Review / GitHub / PR + Web/Cloud/CLI 辅助 + 安全
 ```
 
 ---
@@ -232,7 +235,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 
 | 指标 | 数值 |
 |------|------|
-| **教程总数** | 36 篇完整教程（Claude Code 13 / OpenClaw 12 / Codex 11）+ 1 速查卡 |
+| **教程总数** | 39 篇完整教程（Claude Code 13 / OpenClaw 12 / Codex 14）+ 1 速查卡 |
 | **总字数** | ~180,000 字 |
 | **代码示例** | 90+个（全部可运行） |
 | **FAQ数量** | 230+ 个 |
@@ -268,7 +271,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 |------|---------|---------|
 | **Claude Code** | Anthropic Console / Claude 订阅 / 第三方兼容提供商（`ANTHROPIC_BASE_URL`） | [01-安装指南：API中转站配置](docs/claude-code/01-Claude-Code完整安装指南.md) |
 | **OpenClaw** | 29 个提供商（OpenAI / Claude / Gemini / Ollama / 本地模型等） | [04-模型配置指南](docs/openclaw/04-模型配置指南.md) |
-| **Codex** | ChatGPT 账户登录 / OpenAI API Key | [CX-01 安装与认证](docs/codex/CX-01-Codex安装与认证完整指南.md) |
+| **Codex** | ChatGPT 账户登录 / OpenAI API Key | [CX-01 App 安装与认证](docs/codex/CX-01-Codex-App安装与认证完整指南.md) |
 
 > ⚠️ **第三方模型注意事项**：
 > - 第三方兼容提供商的 API 行为可能不完全等同于官方（速率限制、模型列表、功能支持可能有差异）
@@ -342,7 +345,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 ### v4.1 (2026-05-08) — 全库审计与内容增强
 
 **Phase 3 审计修复（已验证）**
-- CX-03 / CX-05：`--full-auto` 标注为 deprecated（2026年4月底 CLI 发布已废弃），补充推荐替代写法 `--sandbox workspace-write`
+- CX-03 / CX-05：Codex 系列重排为 App 主线，Commands、MCP、Skills、Plugins、Subagents、Automations 等功能独立成篇；CLI / Web 退为辅助路径
 - 01-安装指南：权限配置路径从 `.claude/config.json` 修正为 `.claude/settings.json`（`permissions.allow` 字段），附官方权限文档链接
 - 排除2条误报：`actions/checkout@v5`（v5.0.0 已发布）和 `@openai/codex` 包名（官方正确包名）
 
@@ -363,7 +366,7 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 **Phase 4 内容增强**
 - README 新增"版本说明"区块：版本校验方法、验证版本快照表、版本不一致处理指引
 - README 新增"第三方模型配置说明"入口：三大工具支持的模型接入方式和配置教程链接
-- README 版本号对齐：徽章更新至 Claude Code v2.1.133、统计表修正为 36 篇教程（Codex 11 篇）
+- README 版本号对齐：徽章更新至 Claude Code v2.1.133、统计表修正为 39 篇教程（Codex 14 篇）
 
 ### v4.0 (2026-05-07) — 三顶流合璧：新增 Codex 系列
 
@@ -375,15 +378,15 @@ Week 12 ：Codex Automations + 安全 + 与 Claude Code 协作
 
 **Codex 教程内容**
 - CX-01 安装与认证：CLI/App/IDE/Web/SDK 分层安装、ChatGPT 登录、API Key、Windows/macOS/Linux 路径
-- CX-02 App 桌面指挥中心：Local/Worktree、Review、Settings、Plugins、Automations、Computer Use、内置浏览器
+- CX-02 App 桌面工作流：Local/Worktree、Review、Settings、Plugins、Automations、Computer Use、内置浏览器
 - CX-03 CLI 终端 Agent：`approval_policy`、沙盒、命令行选项、非交互模式、review
 - CX-04 Web 云端 Agent：chatgpt.com/codex、环境配置、Internet Access、PR 工作流
 - CX-05 配置系统：AGENTS.md、config.toml、approval_policy、sandbox_mode、Rules、Hooks、Plugins
 - CX-06 Skills 技能系统：Skills 定位、自定义开发、团队共享、与 Plugins/MCP/Hooks 边界
 - CX-07 MCP 与 Subagents：MCP 配置、`codex app-server` 边界、Subagents、自定义 Agents
 - CX-08 Automations 与集成：App Automations、Triage、thread automation、CI/CLI、Plugins/MCP 集成
-- CX-09 沙箱安全与企业：审批、沙盒、rules、hooks、插件/MCP 权限、企业 requirements
-- CX-10 Codex 综合实战：全系列串联项目、配置、Skills、MCP、Automations
+- CX-09 Automations 后台任务：周期检查、提醒、monitor、Skills + Automation
+- CX-10 Review / GitHub / PR：从 App diff 到 GitHub PR、CI 修复和 Cloud 接力
 - CX-11 Codex vs Claude Code：全面对比、双工具协作实战、社区生态
 
 **验证版本**
