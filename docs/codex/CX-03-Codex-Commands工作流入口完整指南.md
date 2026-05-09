@@ -1,8 +1,8 @@
 # CX-03 Commands 完整指南：App 里的 slash commands 与工作流入口
 
-> 本篇以 Codex App 的 slash commands 为主线。CLI slash commands 只作为核对和排查补充。
->
-> 主要来源：OpenAI Codex App Commands、Codex CLI Slash Commands、Codex Follow Goals 官方文档。本篇按 2026-05-09 可查官方文档修订；命令会随 App 版本、实验开关、插件和权限变化，最终以你当前 App 输入 `/` 后看到的列表为准。
+本篇以 Codex App 的 slash commands 为主线。CLI slash commands 只作为核对和排查补充。
+
+主要来源：OpenAI Codex App Commands、Codex CLI Slash Commands、Codex Follow Goals 官方文档。本篇按 2026-05-09 可查官方文档修订；命令会随 App 版本、实验开关、插件和权限变化，最终以你当前 App 输入 `/` 后看到的列表为准。
 
 ---
 

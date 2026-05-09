@@ -1,6 +1,6 @@
 # CX-07 Plugins / Connectors 完整指南：App 能力扩展与账号连接
 
-> 主要来源：OpenAI Codex App Features、Plugins、Apps / Connectors、MCP、Skills 官方文档。
+主要来源：OpenAI Codex App Features、Plugins、Apps / Connectors、MCP、Skills 官方文档。
 
 ---
 

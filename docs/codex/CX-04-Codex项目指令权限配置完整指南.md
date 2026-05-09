@@ -1,8 +1,8 @@
 # CX-04 项目指令、配置、权限与沙盒：让 App 知道怎么安全工作
 
-> 本篇是 App 主线中的项目指令、权限与安全配置篇。
->
-> 主要来源：OpenAI Codex Config、Rules、Hooks、Settings、CLI 官方文档。
+本篇是 App 主线中的项目指令、权限与安全配置篇。
+
+主要来源：OpenAI Codex Config、Rules、Hooks、Settings、CLI 官方文档。
 
 ---
 

@@ -1,8 +1,8 @@
 # CX-11 Codex Web / Cloud 辅助指南：什么时候离开 App
 
-> 本篇是 App 主线的云端辅助篇。
->
-> 主要来源：OpenAI Codex Web / Cloud、GitHub integration、Environments、Internet Access、Secrets 官方文档。
+本篇是 App 主线的云端辅助篇。
+
+主要来源：OpenAI Codex Web / Cloud、GitHub integration、Environments、Internet Access、Secrets 官方文档。
 
 ---
 

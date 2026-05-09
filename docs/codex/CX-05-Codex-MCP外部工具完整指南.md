@@ -1,8 +1,8 @@
 # CX-05 MCP 完整指南：在 App 中连接外部工具
 
-> 本篇只讲 MCP 外部工具连接。Subagents 已单独拆到 CX-08。
->
-> 主要来源：OpenAI Codex MCP 官方文档、Codex App Settings、Codex CLI MCP 命令。
+本篇只讲 MCP 外部工具连接。Subagents 已单独拆到 CX-08。
+
+主要来源：OpenAI Codex MCP 官方文档、Codex App Settings、Codex CLI MCP 命令。
 
 ---
 

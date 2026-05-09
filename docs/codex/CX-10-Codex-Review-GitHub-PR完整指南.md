@@ -1,8 +1,8 @@
 # CX-10 Review / GitHub / PR 工作流：从 App 改动到可合并结果
 
-> 本篇聚焦 App 主线里的 Review、GitHub 和 PR。
->
-> 主要来源：OpenAI Codex App Review、GitHub integration、Codex Cloud / Web、CLI review 官方文档。
+本篇聚焦 App 主线里的 Review、GitHub 和 PR。
+
+主要来源：OpenAI Codex App Review、GitHub integration、Codex Cloud / Web、CLI review 官方文档。
 
 ---
 

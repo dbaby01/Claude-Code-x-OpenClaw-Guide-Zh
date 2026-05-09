@@ -1,6 +1,6 @@
 # CX-12 Codex CLI 辅助指南：App 用户什么时候需要终端
 
-> 主要来源：OpenAI Codex CLI、CLI Slash Commands、Config、MCP、Review 官方文档。
+主要来源：OpenAI Codex CLI、CLI Slash Commands、Config、MCP、Review 官方文档。
 
 ---
 

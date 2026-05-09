@@ -1,8 +1,8 @@
 # CX-01 Codex App 安装与认证完整指南：Windows / macOS 从下载到第一个线程
 
-> 本篇只解决一件事：把 **Codex App** 正确装好、登上号、打开本地项目，并跑通第一个安全任务。
->
-> 官方来源：OpenAI Codex App 文档、[Codex App Windows](https://developers.openai.com/codex/app/windows)、[Codex Quickstart](https://developers.openai.com/codex/quickstart)、Codex CLI 文档。本篇按 2026-05-09 可查官方文档修订；入口、包名和版本会变化，以官方页面和当前 App 为准。
+本篇只解决一件事：把 **Codex App** 正确装好、登上号、打开本地项目，并跑通第一个安全任务。
+
+官方来源：OpenAI Codex App 文档、[Codex App Windows](https://developers.openai.com/codex/app/windows)、[Codex Quickstart](https://developers.openai.com/codex/quickstart)、Codex CLI 文档。本篇按 2026-05-09 可查官方文档修订；入口、包名和版本会变化，以官方页面和当前 App 为准。
 
 ---
 

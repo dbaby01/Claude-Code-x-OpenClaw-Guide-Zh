@@ -1,8 +1,8 @@
 # CX-09 Automations 完整指南：App 里的后台任务、提醒和周期检查
 
-> 本篇是 App 主线中的 Automations 后台任务篇。
->
-> 主要来源：OpenAI Codex App Automations、App Features、Skills、Rules、CLI / GitHub Action 官方文档。
+本篇是 App 主线中的 Automations 后台任务篇。
+
+主要来源：OpenAI Codex App Automations、App Features、Skills、Rules、CLI / GitHub Action 官方文档。
 
 ---
 

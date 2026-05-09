@@ -1,8 +1,8 @@
 # CX-02 Codex App 桌面工作流完整指南：把 App 当主控台
 
-> 定位说明：本篇是整个 Codex 系列的主轴。后续 Commands、MCP、Skills、Plugins、Automations、Review、Cloud 都围绕这里展开。
->
-> 主要来源：OpenAI Codex App Features、App Commands、Settings、Review、Automations、MCP、Skills、Plugins、CLI Slash Commands 官方文档。
+定位说明：本篇是整个 Codex 系列的主轴。后续 Commands、MCP、Skills、Plugins、Automations、Review、Cloud 都围绕这里展开。
+
+主要来源：OpenAI Codex App Features、App Commands、Settings、Review、Automations、MCP、Skills、Plugins、CLI Slash Commands 官方文档。
 
 ---
 

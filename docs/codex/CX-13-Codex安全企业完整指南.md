@@ -1,8 +1,8 @@
 # CX-13 安全与企业指南：围绕 App 建立权限、审计和合规边界
 
-> 本篇是 App 主线的安全与企业篇。
->
-> 主要来源：OpenAI Codex Settings、Config、Rules、Hooks、MCP、Plugins、Automations 官方文档。
+本篇是 App 主线的安全与企业篇。
+
+主要来源：OpenAI Codex Settings、Config、Rules、Hooks、MCP、Plugins、Automations 官方文档。
 
 ---
 

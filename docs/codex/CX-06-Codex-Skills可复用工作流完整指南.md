@@ -1,6 +1,6 @@
 # CX-06 Skills 完整指南：在 App 中调用和编写可复用工作流
 
-> 主要来源：OpenAI Codex Skills 官方文档、Codex App Features、Plugins 文档。
+主要来源：OpenAI Codex Skills 官方文档、Codex App Features、Plugins 文档。
 
 ---
 

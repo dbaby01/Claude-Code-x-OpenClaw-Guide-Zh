@@ -1,6 +1,6 @@
 # CX-08 Subagents 完整指南：App 中的多 Agent 协作
 
-> 主要来源：OpenAI Codex Subagents、App Features、CLI Slash Commands 官方文档。
+主要来源：OpenAI Codex Subagents、App Features、CLI Slash Commands 官方文档。
 
 ---
 
