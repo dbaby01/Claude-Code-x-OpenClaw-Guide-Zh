@@ -41,7 +41,7 @@
 - **`.claude/commands/` 和 `~/.claude/commands/` 仍然可用**，但更适合兼容旧项目、快速做局部 prompt 包装，或者理解 slash mechanics。
 - **内置命令面板在 2.1.92 已明显扩展**，不再只盯着旧版 `/clear`、`/doctor`、`/loop` 这一批。
 - **要分清 built-in commands 和 bundled skills**：`/loop` 会出现在 slash 菜单里，但官方把它归到 bundled skills，不是固定逻辑的 built-in command。
-- **命令状态也在变化**：`/review` 已弃用；**v2.1.92 已移除 `/tag`、已移除 `/vim`**（release 原文：*`Removed /vim command (toggle vim mode via /config → Editor mode)`*，见 [v2.1.92 release](https://github.com/anthropics/claude-code/releases/tag/v2.1.92)）。
+- **命令状态也在变化**：`/review` 当前仍在官方 Commands Reference 中；**`/pr-comments` 已在 v2.1.91 移除，`/vim` 已在 v2.1.92 移除**（release 原文：*`Removed /vim command (toggle vim mode via /config → Editor mode)`*，见 [v2.1.92 release](https://github.com/anthropics/claude-code/releases/tag/v2.1.92)）。
 - **v2.1.90** 起新增 **`/powerup`**（交互式课程 + 动画演示，见 [v2.1.90 release](https://github.com/anthropics/claude-code/releases/tag/v2.1.90)）。
 
 因此，这一章请这样读：
@@ -503,27 +503,60 @@ You: /hello
 |                      | `/export`        | 导出对话记录    | 保存重要对话   |      |
 |                      | `/rename`        | 重命名会话      | 整理会话列表   |      |
 |                      | `/branch`        | 创建会话分支    | 探索不同方案   |      |
+|                      | `/btw`           | 提旁路问题      | 不污染主上下文 |      |
+|                      | `/side`          | 临时旁路会话    | 快速追问       |      |
+|                      | `/teleport`      | 拉取 Web 会话到终端 | Web/CLI 接力 |      |
 | **上下文控制** | `/context`       | 查看Token使用   | 监控上下文     |  ⭐  |
 |                      | `/cost`          | 查看费用与用量（v2.1.92+ 订阅用户含 per-model / cache-hit，见 release） | 成本控制       |      |
 |                      | `/model`         | 切换AI模型      | 按需选模型     |  ⭐  |
 |                      | `/effort`        | 推理深度控制    | 调节AI思考深度 |  ⭐  |
 |                      | `/usage`         | 账户使用量      | 查看配额       |      |
+|                      | `/focus`         | 聚焦视图        | 减少界面噪声   |      |
+|                      | `/recap`         | 生成会话一句话摘要 | 快速恢复上下文 |      |
 | **项目配置**   | `/init`          | 初始化CLAUDE.md | 新项目配置     |  ⭐  |
 |                      | `/memory`        | 编辑记忆文件    | 添加项目规则   |      |
 |                      | `/permissions`   | 管理权限设置    | 安全控制       |      |
 |                      | `/add-dir`       | 添加工作目录    | 跨目录操作     |  ⭐  |
+|                      | `/config`        | 打开设置界面    | 调主题、模型、输出风格 |      |
+|                      | `/keybindings`   | 编辑按键绑定    | 自定义快捷键   |      |
+|                      | `/theme`         | 切换主题        | 终端显示调整   |      |
+|                      | `/terminal-setup` | 配置终端快捷键 | Shift+Enter 等 |      |
+|                      | `/ide`           | 管理 IDE 集成   | IDE 联动       |      |
+|                      | `/chrome`        | 配置 Chrome 集成 | 浏览器联动     |      |
 | **开发辅助**   | `/security-review` | 安全审查      | 检查当前 diff 的安全问题 |      |
+|                      | `/review`        | 本地 PR / 改动审查 | 通用代码审查 |      |
+|                      | `/simplify`      | 复用、质量、效率修正 | 改完后打磨 |      |
+|                      | `/batch`         | 大规模并行改造  | 多 worktree/多 agent |      |
+|                      | `/autofix-pr`    | 远程盯 PR 并修 CI/评论 | PR 修复循环 |      |
+|                      | `/ultrareview`   | 云端多 Agent 深度审查 | 高风险 PR |      |
+|                      | `/ultraplan`     | 云端深度计划    | 复杂方案设计   |      |
 |                      | `/tasks`         | 后台任务管理    | 查看后台 Bash / agent 任务 |      |
 |                      | `/rewind`        | 回退检查点      | 撤销修改       |  ⭐  |
 | **诊断工具**   | `/doctor`        | 系统健康检查    | 排查问题       |      |
 |                      | `/status`        | 完整状态信息    | 环境确认       |      |
 |                      | `/stats`         | 使用统计        | 习惯分析       |      |
+|                      | `/debug`         | 开启并分析调试日志 | 排查异常     |      |
+|                      | `/feedback`      | 提交反馈/问题报告 | 反馈 bug      |      |
+|                      | `/heapdump`      | 写出堆快照      | 内存问题诊断   |      |
 |                      | `/powerup`       | 交互式功能教程（v2.1.90+） | 新手熟悉 CLI |      |
 | **MCP相关**    | `/mcp`           | 管理MCP连接     | 外部工具       |  ⭐  |
 |                      | `/hooks`         | 管理Hooks       | 自动化触发     |  ⭐  |
+|                      | `/plugin`        | 管理插件        | 安装/卸载插件  |      |
+|                      | `/reload-plugins` | 重载插件      | 调试插件改动   |      |
+|                      | `/skills`        | 查看 Skills     | 管理可用工作流 |      |
 | **其他**       | `/help`          | 显示帮助        | 快速查命令     |  ⭐  |
 |                      | `/release-notes` | 更新日志（v2.1.92+ 为交互式版本选择器） | 查看新功能     |      |
 |                      | `/loop`          | Bundled skill：定时循环执行 | 监控部署状态   |  ⭐  |
+|                      | `/schedule`      | 云端例行任务    | 定时 routine   |      |
+|                      | `/remote-control` | 远程控制当前会话 | 手机/网页接力 |      |
+|                      | `/desktop`       | 在桌面 App 继续 | 桌面接力       |      |
+|                      | `/mobile`        | 显示移动端二维码 | 手机端安装     |      |
+|                      | `/login` / `/logout` | 登录/退出账号 | 账号切换     |      |
+|                      | `/privacy-settings` | 隐私设置      | Pro/Max 用户   |      |
+|                      | `/extra-usage`   | 配置额外用量    | 限额后继续工作 |      |
+|                      | `/passes`        | 分享体验资格    | 符合资格时     |      |
+|                      | `/upgrade`       | 打开升级页面    | 升级套餐       |      |
+|                      | `/web-setup`     | 连接 GitHub 到 Web | Web 工作流  |      |
 |                      | `/sandbox`       | 沙箱隔离模式    | 安全执行       |      |
 |                      | `/color`         | 会话颜色设置    | 个性化         |      |
 |                      | `/copy`          | 复制AI回复      | 分享内容       |      |
@@ -570,16 +603,18 @@ You: /powerup
 /loop 5m check deployment status  # 每5分钟检查部署状态
 /loop 30s run tests               # 每30秒运行测试
 /loop 1h check for updates        # 每1小时检查更新
+/loop check the build             # 不写间隔时由 Claude 动态选择
 ```
 
-**语法**：`/loop <时间间隔> <提示词>`
+**语法**：`/loop [时间间隔] [提示词]`
 
-**时间格式**：数字 + 单位（`s`秒 / `m`分钟 / `h`小时）
+**时间格式**：数字 + 单位（`s`秒 / `m`分钟 / `h`小时）。如果省略时间间隔，Claude 会根据任务动态选择合适的检查频率。
 
 **注意事项**：
 - 只在 REPL 空闲时触发（不会打断你当前的工作）
 - 官方当前文档里，循环任务是 **7 天后自动过期**
-- 使用 `Ctrl + C` 可以停止当前循环
+- 等待下一次迭代时，可按 `Esc` 取消当前循环
+- `/proactive` 是 `/loop` 的别名
 
 > 💡 **实用场景**：监控CI/CD部署进度、定期检查构建状态、轮询外部服务健康状况。
 
