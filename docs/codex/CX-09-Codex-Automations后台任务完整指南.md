@@ -4,14 +4,63 @@
 >
 > 主要来源：OpenAI Codex App Automations、App Features、Skills、Rules、CLI / GitHub Action 官方文档。
 
-## 本课目标
+---
 
-你会学会：
+> **课程信息**
+>
+> - **作者**：老金
+> - **GitHub**：https://github.com/KimYx0207
+> - **公众号**：老金带你玩AI
+> - **X（Twitter）**：老金带你玩AI
+> - **个人博客**：https://aiking.dev
+> - **预计学时**：2-3小时
+> - **难度等级**：⭐⭐ 入门级
+> - **更新日期**：2026年5月
+> - **信息来源**：OpenAI Codex App Automations、App Features、Skills、Rules、CLI / GitHub Action 官方文档
+> - **前置要求**：已完成 [CX-01 安装](./CX-01-Codex-App安装与认证完整指南.md)、[CX-02 桌面工作流](./CX-02-Codex-App桌面工作流完整指南.md)
 
-- 在 Codex App 中创建和管理 Automations。
-- 区分 reminder、monitor、周期检查、CI 自动化。
-- 把 Automation 和 Skill 组合成稳定流程。
-- 避免让后台任务获得过大权限。
+---
+
+## 📚 本课学习目标
+
+完成本课学习后，你将能够：
+
+1. **理解Automations的本质**：掌握它是后台/周期执行重复任务的能力，不是一次性工具
+2. **创建规范的Automation**：写清频率、目录、目标、权限、输出、停止条件
+3. **区分三类自动化任务**：摘要（只读）、检查（只读或最小写入）、修复（必须Review）
+4. **组合Skill和Automation**：Automation管"什么时候运行"，Skill管"怎么做"
+5. **理解与Command/Skill的区别**：Command手动触发、Skill复用流程、Automation按计划执行
+6. **掌握安全基线**：学习阶段只读优先，不自动提交、不自动推送、不自动删除
+7. **验收Automation效果**：时间、范围、输出、失败处理、副作用、暂停入口六维检查
+8. **区分App/CI/SDK场景**：知道什么时候用App Automation、什么时候用GitHub Action或SDK
+
+---
+
+## 🗺️ 学习路径导航（先看这里！）
+
+> 💡 **根据你的情况选择学习路径**：不用全看！
+
+### 路径A：快速上手（⏱️ 15分钟）
+
+**适合人群**：想快速创建一个每日检查任务
+
+**只看这些章节**：
+
+```
+✅ 第1-2部分：Automations是什么 + 创建方式（5分钟）
+✅ 第3部分：三类常见任务（3分钟）
+✅ 第10部分：设计模板（7分钟）
+```
+
+---
+
+### 路径B：完整学习（⏱️ 2-3小时）
+
+**适合人群**：想系统掌握Automations和安全基线
+
+**学习顺序**：从头到尾所有章节
+
+---
 
 ## 1. Automations 是什么
 
@@ -185,6 +234,47 @@ Automation 管“什么时候运行”，Skill 管“怎么做”。
 ### Q3：可以用配置文件批量管理 Automations 吗？
 
 以当前 App 支持能力为准。教程不要臆造不存在的 `.codex/automations.toml` 主路径。
+
+---
+
+## 📝 总结与检查清单
+
+完成本课后，请确认以下所有项：
+
+- [ ] 理解Automation是后台/周期执行，不是一次性工具
+- [ ] 能写清频率、目录、目标、权限、输出、停止条件
+- [ ] 学习阶段优先只读任务（摘要、检查）
+- [ ] 知道如何组合Skill和Automation
+- [ ] 第一次运行后做了六维验收（时间/范围/输出/失败/副作用/暂停）
+- [ ] 不让Automation自动提交、推送、删除或扩大权限
+
+**如果以上全部勾选，恭喜你掌握Codex Automations！**
+
+---
+
+## 附录
+
+### A. 自动化能力对比
+
+| 能力 | 触发方式 | 适合 |
+|------|---------|------|
+| Command | 手动输入 | 立即执行 |
+| Skill | 用户点名 | 可复用流程 |
+| Automation | 时间/后台事件 | 重复任务 |
+
+### B. 推荐学习资源
+
+- **Codex Automations 官方文档**：https://developers.openai.com/codex/automations
+- **本系列上一篇**：[CX-08 Subagents](./CX-08-Codex-Subagents多Agent协作完整指南.md)
+- **本系列下一篇**：[CX-10 Review / GitHub / PR](./CX-10-Codex-Review-GitHub-PR完整指南.md)
+
+---
+
+**课程制作**：老金
+**最后更新**：2026年5月
+**许可**：本课程采用CC BY-NC-SA 4.0许可
+
+---
 
 ## 下一步
 

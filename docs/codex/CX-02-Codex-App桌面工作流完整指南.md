@@ -4,14 +4,79 @@
 >
 > 主要来源：OpenAI Codex App Features、App Commands、Settings、Review、Automations、MCP、Skills、Plugins、CLI Slash Commands 官方文档。
 
-## 本课目标
+---
 
-你会掌握 Codex App 的核心工作方式：
+> **课程信息**
+>
+> - **作者**：老金
+> - **GitHub**：https://github.com/KimYx0207
+> - **公众号**：老金带你玩AI
+> - **X（Twitter）**：老金带你玩AI
+> - **个人博客**：https://aiking.dev
+> - **预计学时**：3-4小时
+> - **难度等级**：⭐ 零基础入门
+> - **更新日期**：2026年5月
+> - **信息来源**：OpenAI Codex App Features、Settings、Review、Automations、MCP、Skills、Plugins 官方文档
+> - **前置要求**：已完成 [CX-01 Codex App 安装与认证](./CX-01-Codex-App安装与认证完整指南.md)
 
-- Local thread、worktree thread、cloud handoff 的区别。
-- App 中如何描述任务、看 diff、审批命令、合并改动。
-- App 中 Commands、MCP、Skills、Plugins、Automations 分别放在什么位置。
-- CLI / Web 什么时候只是辅助。
+---
+
+## 📚 本课学习目标
+
+完成本课学习后，你将能够：
+
+1. **理解App的核心模型**：掌握Thread、Worktree、Review、Terminal、Settings等核心概念
+2. **区分三种工作方式**：清楚Local thread、Worktree thread、Cloud handoff各自的适用场景
+3. **写好任务描述**：用目标-范围-约束-验证-交付五要素模板描述任务
+4. **掌握Review工作流**：在App中查看diff、审批命令、合并改动
+5. **理解Settings配置**：知道模型、审批、沙盒、插件、MCP在App中的配置入口
+6. **建立App全局视角**：知道Commands、MCP、Skills、Plugins、Automations在App中各自的位置和关系
+7. **避免常见翻车场景**：不盲目给写权限、不跳过Review、不用Cloud替代本地App
+8. **跑通完整的App改动流程**：从任务描述到diff检查到合并提交的全流程
+
+---
+
+## 🗺️ 学习路径导航（先看这里！）
+
+> 💡 **根据你的情况选择学习路径**：这是一篇长教程，不用全看！
+
+### 路径A：快速上手（⏱️ 20分钟）
+
+**适合人群**：装好了App，想快速知道怎么用
+
+**只看这些章节**（其他跳过）：
+
+```
+✅ 第1部分：App的核心模型（5分钟）
+✅ 第2部分：三种工作方式（5分钟）
+✅ 第3部分：任务描述模板（5分钟）
+✅ 第6部分：Review工作流（5分钟）
+```
+
+**20分钟后你能达到**：能用App描述任务、看懂diff、做基本操作
+
+---
+
+### 路径B：完整学习（⏱️ 3-4小时）
+
+**适合人群**：想系统掌握Codex App的全部工作流
+
+**学习顺序**：从头到尾所有章节
+
+---
+
+### 路径C：问题排查（⏱️ 5分钟）
+
+**适合人群**：使用App时遇到问题
+
+**直接跳到**：
+
+```
+🔧 第10部分：常见错误
+🔧 第11部分：常见问题FAQ
+```
+
+---
 
 ## 1. App 的核心模型
 
@@ -235,6 +300,61 @@ GitHub / PR 详见 CX-10。
 ### Q3：App 中看到的命令和 CLI 一样吗？
 
 不一定。以当前 App 的 `/help`、命令补全和官方文档为准。CLI 能帮助核对，但不是 App 的替代品。
+
+---
+
+## 📝 总结与检查清单
+
+完成本课后，请确认以下所有项：
+
+- [ ] 理解Local thread、Worktree thread、Cloud handoff三种工作方式的区别
+- [ ] 能用五要素模板（目标-范围-约束-验证-交付）描述任务
+- [ ] 知道如何在App中查看diff和审批命令
+- [ ] 理解Settings中模型、审批、沙盒等配置入口
+- [ ] 知道Commands、MCP、Skills、Plugins、Automations在App中的位置
+- [ ] 不跳过Review直接合并
+- [ ] 陌生项目先用只读模式
+
+**如果以上全部勾选，恭喜你掌握Codex App核心工作流！**
+
+---
+
+## 附录
+
+### A. App核心概念速查
+
+| 概念 | 一句话解释 |
+|------|-----------|
+| Thread | 一条任务线，包含上下文、历史和状态 |
+| Local thread | 直接在当前工作区执行的任务线 |
+| Worktree thread | 在隔离Git分支/目录中执行的任务线 |
+| Cloud handoff | 将任务交给云端执行的接力模式 |
+| Review面板 | 查看diff、文件变更、行内反馈的关口 |
+| Settings | 模型、审批、沙盒、插件、MCP等配置入口 |
+
+### B. 任务描述模板
+
+```text
+目标：[你要达到什么效果]
+范围：[只改哪些文件/目录]
+约束：[不能做什么]
+验证：[怎么确认改对了]
+交付：[期望的输出形式]
+```
+
+### C. 推荐学习资源
+
+- **Codex App 官方文档**：https://developers.openai.com/codex
+- **本系列上一篇**：[CX-01 Codex App 安装与认证](./CX-01-Codex-App安装与认证完整指南.md)
+- **本系列下一篇**：[CX-03 Commands 工作流入口](./CX-03-Codex-Commands工作流入口完整指南.md)
+
+---
+
+**课程制作**：老金
+**最后更新**：2026年5月
+**许可**：本课程采用CC BY-NC-SA 4.0许可
+
+---
 
 ## 下一步
 

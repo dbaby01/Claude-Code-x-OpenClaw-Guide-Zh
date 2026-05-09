@@ -2,14 +2,64 @@
 
 > 主要来源：OpenAI Codex Skills 官方文档、Codex App Features、Plugins 文档。
 
-## 本课目标
+---
 
-你会学会：
+> **课程信息**
+>
+> - **作者**：老金
+> - **GitHub**：https://github.com/KimYx0207
+> - **公众号**：老金带你玩AI
+> - **X（Twitter）**：老金带你玩AI
+> - **个人博客**：https://aiking.dev
+> - **预计学时**：2-3小时
+> - **难度等级**：⭐⭐ 入门级
+> - **更新日期**：2026年5月
+> - **信息来源**：OpenAI Codex Skills 官方文档、Codex App Features、Plugins 文档
+> - **前置要求**：已完成 [CX-01 安装](./CX-01-Codex-App安装与认证完整指南.md)、[CX-02 桌面工作流](./CX-02-Codex-App桌面工作流完整指南.md)、[CX-03 Commands](./CX-03-Codex-Commands工作流入口完整指南.md)
 
-- Skill 在 Codex App 中是什么。
-- 什么时候把一段提示词沉淀成 Skill。
-- 如何调用、编写、共享 Skill。
-- Skill 和 Command、Plugin、MCP、Automation 的边界。
+---
+
+## 📚 本课学习目标
+
+完成本课学习后，你将能够：
+
+1. **理解Skill的本质**：掌握Skill是可复用工作流，不是快捷命令
+2. **判断什么时候升级成Skill**：一个流程重复三次以上、团队多人需要时就该沉淀
+3. **编写规范的Skill**：写出目标明确、触发清晰、步骤可执行、输出稳定的SKILL.md
+4. **管理Skill资源**：合理组织references/和scripts/，不藏危险脚本
+5. **区分Skills与其他能力**：清楚Command、Skill、Automation、MCP、Plugin各自的分工
+6. **团队共享Skill**：通过项目级`.codex/skills/`或Plugin打包分发
+7. **验收Skill质量**：触发、输出、权限、平台、资源、维护六维验收
+8. **避免Skill反模式**：不写不可验证的口号、不写密钥、不伪装工具API
+
+---
+
+## 🗺️ 学习路径导航（先看这里！）
+
+> 💡 **根据你的情况选择学习路径**：不用全看！
+
+### 路径A：快速上手（⏱️ 15分钟）
+
+**适合人群**：想快速写一个团队复用的Skill
+
+**只看这些章节**：
+
+```
+✅ 第1部分：Skill是什么（2分钟）
+✅ 第3部分：Skill的文件结构（5分钟）
+✅ 第4部分：好Skill的标准（3分钟）
+✅ 第5部分：什么时候从prompt升级成Skill（5分钟）
+```
+
+---
+
+### 路径B：完整学习（⏱️ 2-3小时）
+
+**适合人群**：想系统掌握Skill开发、共享和治理
+
+**学习顺序**：从头到尾所有章节
+
+---
 
 ## 1. Skill 是什么
 
@@ -224,6 +274,58 @@ Plugin 可以携带 Skills，但 Skill 不等于 Plugin。
 ### Q3：Skill 能运行脚本吗？
 
 可以引用脚本资源，但是否执行取决于权限和当前环境。脚本要最小权限、可审计。
+
+---
+
+## 📝 总结与检查清单
+
+完成本课后，请确认以下所有项：
+
+- [ ] 理解Skill是可复用工作流，不是快捷命令
+- [ ] 知道什么时候该把prompt升级成Skill（重复3次+、团队统一）
+- [ ] 能写出规范的SKILL.md（目标明确、步骤可执行、输出稳定）
+- [ ] 理解Skill与Command、Automation、MCP、Plugin的分工
+- [ ] 知道项目级、用户级、插件级Skill的放置位置
+- [ ] 共享前做过触发、输出、权限、平台、资源、维护六维验收
+
+**如果以上全部勾选，恭喜你掌握Codex Skills！**
+
+---
+
+## 附录
+
+### A. 能力分工速查
+
+| 需求 | 首选 |
+|------|------|
+| 当前线程快速动作 | Command |
+| 固定SOP/复用流程 | Skill |
+| 定时或后台重复执行 | Automation |
+| 外部工具连接 | MCP / Connector |
+| 打包分发一组能力 | Plugin |
+
+### B. Skill文件结构
+
+```text
+.codex/skills/my-skill/
+  SKILL.md          # 入口、流程、规则
+  references/       # 参考文档
+  scripts/          # 可选脚本
+```
+
+### C. 推荐学习资源
+
+- **Codex Skills 官方文档**：https://developers.openai.com/codex/skills
+- **本系列上一篇**：[CX-05 MCP 外部工具](./CX-05-Codex-MCP外部工具完整指南.md)
+- **本系列下一篇**：[CX-07 Plugins 连接器](./CX-07-Codex-Plugins连接器完整指南.md)
+
+---
+
+**课程制作**：老金
+**最后更新**：2026年5月
+**许可**：本课程采用CC BY-NC-SA 4.0许可
+
+---
 
 ## 下一步
 

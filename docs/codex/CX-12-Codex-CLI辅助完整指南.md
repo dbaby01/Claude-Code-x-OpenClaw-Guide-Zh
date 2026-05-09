@@ -2,14 +2,62 @@
 
 > 主要来源：OpenAI Codex CLI、CLI Slash Commands、Config、MCP、Review 官方文档。
 
-## 本课目标
+---
 
-你会学会：
+> **课程信息**
+>
+> - **作者**：老金
+> - **GitHub**：https://github.com/KimYx0207
+> - **公众号**：老金带你玩AI
+> - **X（Twitter）**：老金带你玩AI
+> - **个人博客**：https://aiking.dev
+> - **预计学时**：2-3小时
+> - **难度等级**：⭐⭐ 入门级
+> - **更新日期**：2026年5月
+> - **信息来源**：OpenAI Codex CLI、CLI Slash Commands、Config、MCP、Review 官方文档
+> - **前置要求**：已完成 [CX-01 安装](./CX-01-Codex-App安装与认证完整指南.md)
 
-- CLI 在 App 主线中的位置。
-- 哪些任务适合 CLI。
-- 常用 CLI 命令和安全边界。
-- 不把 CLI 教程写成 Codex 主线。
+---
+
+## 📚 本课学习目标
+
+完成本课学习后，你将能够：
+
+1. **理解CLI的定位**：CLI是App的辅助工具，不是普通用户的第一入口
+2. **掌握CLI常用命令**：`codex --help`、`codex exec`、`codex review`、`codex mcp list`
+3. **理解审批与沙盒参数**：`--ask-for-approval`和`--sandbox`的组合使用
+4. **使用`codex exec`无头执行**：在CI和脚本中运行一次性只读任务
+5. **使用`codex review`终端审查**：快速检查当前diff，与App Review交叉验证
+6. **掌握CLI slash commands**：`/status`、`/permissions`、`/plan`、`/compact`等常用命令
+7. **用CLI管理MCP和Plugins**：排查工具配置、统一团队安装
+8. **理解CI安全原则**：最小权限、外部沙箱、不输出密钥、明确范围、人工合并
+
+---
+
+## 🗺️ 学习路径导航（先看这里！）
+
+> 💡 **根据你的情况选择学习路径**：不用全看！
+
+### 路径A：快速上手（⏱️ 10分钟）
+
+**适合人群**：想知道CLI能干什么
+
+**只看这些章节**：
+
+```
+✅ 第1-2部分：CLI定位 + 常用命令（5分钟）
+✅ 第4部分：codex exec（5分钟）
+```
+
+---
+
+### 路径B：完整学习（⏱️ 2-3小时）
+
+**适合人群**：需要用CLI做CI或排查
+
+**学习顺序**：从头到尾所有章节
+
+---
 
 ## 1. CLI 的定位
 
@@ -175,6 +223,50 @@ CLI 改完 MCP 或插件后，仍要回 App 验收：
 ### Q3：CLI 能替代 Automations 吗？
 
 不能完全替代。CLI 适合脚本和 CI；App Automations 是 App 内的后台/周期任务体验。
+
+---
+
+## 📝 总结与检查清单
+
+完成本课后，请确认以下所有项：
+
+- [ ] 理解CLI是App的辅助，不是主线
+- [ ] 掌握`codex exec`无头执行和`codex review`终端审查
+- [ ] 知道审批和沙盒参数的组合使用
+- [ ] 不把CLI教程写成Codex主线
+- [ ] CI中遵循最小权限、不输出密钥、人工合并原则
+
+**如果以上全部勾选，恭喜你掌握Codex CLI辅助！**
+
+---
+
+## 附录
+
+### A. CLI命令速查
+
+| 命令 | 用途 |
+|------|------|
+| `codex --help` | 查看帮助 |
+| `codex` | 交互模式 |
+| `codex app` | 打开或配合App |
+| `codex exec "任务"` | 无头执行 |
+| `codex review` | 审查当前改动 |
+| `codex mcp list` | 列出MCP工具 |
+| `codex plugin --help` | 插件管理帮助 |
+
+### B. 推荐学习资源
+
+- **Codex CLI 官方文档**：https://developers.openai.com/codex/cli
+- **本系列上一篇**：[CX-11 Web / Cloud 辅助](./CX-11-Codex-Web-Cloud辅助指南.md)
+- **本系列下一篇**：[CX-13 安全与企业](./CX-13-Codex安全企业完整指南.md)
+
+---
+
+**课程制作**：老金
+**最后更新**：2026年5月
+**许可**：本课程采用CC BY-NC-SA 4.0许可
+
+---
 
 ## 下一步
 

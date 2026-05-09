@@ -4,14 +4,62 @@
 >
 > 主要来源：OpenAI Codex Web / Cloud、GitHub integration、Environments、Internet Access、Secrets 官方文档。
 
-## 本课目标
+---
 
-你会学会：
+> **课程信息**
+>
+> - **作者**：老金
+> - **GitHub**：https://github.com/KimYx0207
+> - **公众号**：老金带你玩AI
+> - **X（Twitter）**：老金带你玩AI
+> - **个人博客**：https://aiking.dev
+> - **预计学时**：1-2小时
+> - **难度等级**：⭐⭐ 入门级
+> - **更新日期**：2026年5月
+> - **信息来源**：OpenAI Codex Web/Cloud、GitHub integration、Environments、Secrets 官方文档
+> - **前置要求**：已完成 [CX-01 安装](./CX-01-Codex-App安装与认证完整指南.md)、[CX-02 桌面工作流](./CX-02-Codex-App桌面工作流完整指南.md)、[CX-10 Review/PR](./CX-10-Codex-Review-GitHub-PR完整指南.md)
 
-- Web / Cloud 与本地 App 的边界。
-- 什么任务适合交给云端。
-- Cloud environment、setup script、secrets 怎么理解。
-- 如何避免把 Cloud 当成本地 App 的替代品。
+---
+
+## 📚 本课学习目标
+
+完成本课学习后，你将能够：
+
+1. **理解Cloud的定位**：掌握Cloud是远程执行路径，不是"更强的本地App"
+2. **判断何时用Cloud**：远程仓库任务、长任务、PR修复、不依赖本机文件的改动
+3. **理解Environment**：知道如何定义云端任务的仓库、依赖、setup script、secrets
+4. **编写安全的setup script**：短而稳定、不写交互式命令、不输出密钥
+5. **掌握App到Cloud的接力流程**：本地确认范围→创建issue/PR→Cloud接手→回到App Review
+6. **管理Cloud安全**：最小权限secrets、不打印到日志、不把生产写权限给调试任务
+7. **验收Cloud结果**：回到App看diff、本地跑验证、检查范围外改动
+8. **区分App/Cloud/Automation场景**：知道各自适合什么类型的任务
+
+---
+
+## 🗺️ 学习路径导航（先看这里！）
+
+> 💡 **根据你的情况选择学习路径**：不用全看！
+
+### 路径A：快速上手（⏱️ 10分钟）
+
+**适合人群**：想知道什么时候该把任务交给Cloud
+
+**只看这些章节**：
+
+```
+✅ 第1-2部分：Web/Cloud是什么 + 什么时候用（5分钟）
+✅ 第7部分：App到Cloud的接力（5分钟）
+```
+
+---
+
+### 路径B：完整学习（⏱️ 1-2小时）
+
+**适合人群**：想系统掌握Cloud配置和使用
+
+**学习顺序**：从头到尾所有章节
+
+---
 
 ## 1. Web / Cloud 是什么
 
@@ -151,6 +199,47 @@ Cloud 完成后，回到 App 做：
 ### Q3：Cloud 任务完成后还要本地 Review 吗？
 
 要。最终合并前仍要看 diff、测试和 PR。
+
+---
+
+## 📝 总结与检查清单
+
+完成本课后，请确认以下所有项：
+
+- [ ] 理解Cloud是远程执行路径，不是本地App的替代品
+- [ ] 知道什么任务适合Cloud（远程仓库、长任务、PR修复）
+- [ ] 知道什么任务不适合Cloud（本机私有文件、GUI任务）
+- [ ] 了解Environment、setup script、secrets的基本概念
+- [ ] Cloud完成后会回到App做本地Review
+- [ ] 不因为Cloud"通过"就跳过本地Review
+
+**如果以上全部勾选，恭喜你掌握Codex Web/Cloud辅助！**
+
+---
+
+## 附录
+
+### A. App vs Cloud 对比
+
+| 维度 | App | Web / Cloud |
+|------|-----|-------------|
+| 执行位置 | 本机 | 云端环境 |
+| 主要对象 | 本地线程、worktree | 远程仓库、PR |
+| 适合 | 本地开发、桌面多线程 | 长任务、远程PR |
+
+### B. 推荐学习资源
+
+- **Codex Cloud 官方文档**：https://developers.openai.com/codex/cloud
+- **本系列上一篇**：[CX-10 Review / GitHub / PR](./CX-10-Codex-Review-GitHub-PR完整指南.md)
+- **本系列下一篇**：[CX-12 CLI 辅助](./CX-12-Codex-CLI辅助完整指南.md)
+
+---
+
+**课程制作**：老金
+**最后更新**：2026年5月
+**许可**：本课程采用CC BY-NC-SA 4.0许可
+
+---
 
 ## 下一步
 
