@@ -4,6 +4,27 @@
 
 ---
 
+## [v2.1.135] - 2026-05-10
+
+### 修改
+
+- 集中更新说明：README 和各教程不再维护独立更新日志、差量更新或版本基线块，统一以 `CHANGELOG.md` 作为唯一更新记录
+- 清理 Claude Code、Codex、OpenClaw 教程中分散的版本更新附录、页脚版本历史和文首版本提示，减少多处说明漂移
+- README 的更新日志区块改为“更新说明”入口，只保留当前项目介绍、目录和使用入口
+- 合并 README 原有历史更新摘要：v4.1 全库审计与 v2.1.93→v2.1.133 内容增强、v4.0 Codex 系列新增、v3.x OpenClaw / Claude Code 同步修订、v2.0 Claude Code 2.1.52 适配、v1.0 初始发布记录
+
+### 从 README 合并的历史摘要
+
+- v4.1（2026-05-08）：完成全库审计与内容增强，修正 Codex 系列结构、Claude Code 权限配置路径、README 版本说明和第三方模型配置入口，并补充 Claude Code v2.1.93→v2.1.133 的 Monitor、Session Recap、Skills、Plugins、Hooks、MCP、Subagent、SDK、企业实战等变更
+- v4.0（2026-05-07）：项目升级为 Claude Code、OpenClaw、Codex 三教程结构，新增 `docs/codex/` 系列，覆盖 Codex App 安装认证、桌面工作流、Commands、项目配置、MCP、Skills、Plugins、Subagents、Automations、Review / GitHub / PR、Web / Cloud / CLI 辅助、安全企业和 Claude Code 对比
+- v3.3（2026-04-05）：OpenClaw README 徽章与统计表改为稳定版 v2026.3.28 口径，说明预发布与稳定版并存，并统一目录、贡献路线和版本基线表述
+- v3.2（2026-04-05）：同步 Claude Code 安装、基础使用、MCP、Commands、Hooks、Subagents、Plugins、企业实战等章节，新增 Remote Control 与 Channels / 计划任务教程，修正 Hooks、Subagents、Plugins 和 OpenClaw 安装、模型、技能、FAQ 等章节口径
+- v3.0（2026-02-25）：项目从 Claude Code 单教程扩展为 Claude Code 与 OpenClaw 双教程，新增 OpenClaw 阅读指南和 11 篇教程，重组 `docs/claude-code/` 与 `docs/openclaw/` 目录，并补充 Claude Code 权限、MCP、Agent SDK 等内容
+- v2.0（2026-02-25）：适配 Claude Code 2.1.52，更新教程版本号、README 徽章、Hooks 工作树管理、`--worktree`、`/fast`、API 中转站配置，并修复旧版本标记和快速导航描述
+- v1.0（2026-02-11）：发布 10 篇 Claude Code 初始教程，包含约 104,000 字内容、70+ 代码示例和 120 个 FAQ
+
+---
+
 ## [v2.1.134] - 2026-05-10
 
 ### 修改

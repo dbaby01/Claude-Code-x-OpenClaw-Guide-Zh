@@ -17,27 +17,6 @@
 
 ---
 
-## 2026-04 差量更新（先读）
-
-这章主体内容已经切到了 Agent SDK，但还有两个容易混淆的点：
-
-- **官方文档主入口已经转到 `platform.claude.com/docs/.../agent-sdk/...`**，不要再把旧的 Claude Code SDK 文档路径当主入口。
-- **当前包名与品牌都应统一写作 Claude Agent SDK**；“Claude Code SDK”只适合作为迁移说明里的旧称呼。
-
-### v2.1.132+ / v2.1.133 SDK 相关变更
-
-**v2.1.132**：
-
-- **`CLAUDE_CODE_SESSION_ID`**：Bash 工具的子进程环境中现在自动注入此环境变量。如果你的 Agent 通过 Claude Code 的 Bash 工具执行脚本，脚本可以通过 `$CLAUDE_CODE_SESSION_ID` 获取当前会话 ID，用于日志关联和状态追踪。
-- **`CLAUDE_CODE_FORK_SUBAGENT`**：当 Skill 以 `context: fork` 模式运行时，子进程会自动设置此变量为 `1`。用于区分主会话和 fork 子代理。
-
-**v2.1.133**：
-
-- **`localSettings` suggestion**：SDK 的 `Message` 类型中新增 `localSettings` 字段，用于向 Claude Code 建议本地设置项。具体 schema 以官方 SDK 类型定义为准。
-- **`mcp_authenticate` redirectUri**：MCP OAuth 认证流程中的 `mcp_authenticate` 工具新增 `redirectUri` 参数，支持更灵活的 OAuth 回调配置。
-
----
-
 ## 本课学习目标
 
 完成本课学习后，你将能够：

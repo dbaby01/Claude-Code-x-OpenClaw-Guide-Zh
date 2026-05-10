@@ -27,42 +27,6 @@
 
 ---
 
-## 2026-04 差量更新（先读）
-
-这章旧版最大的问题，是把 `--plugin-dir` 写成了默认主路径。现在更准确的理解是：
-
-- **普通用户安装插件**：优先使用交互内置的 `/plugin` 命令和市场（market）体系。
-- **本地开发 / 调试插件**：`--plugin-dir` 仍然有价值，但它更像开发者入口，不是今天最推荐的日常安装方式。
-- **Plugin 的边界更清晰了**：它不只是“Commands + Skills + MCP 配置”，还涉及 market、scope、manifest、agents、hooks、LSP、bin、settings 等运行面。
-
-因此，下面请把 `/plugin` 视为主路径，把 `--plugin-dir` 视为本地开发补充路径。
-
-### v2.1.114+ → v2.1.133 变更
-
-**v2.1.114**：新增**自定义主题**能力。Plugin 现在可以通过 manifest 声明颜色主题（color palette），用户也可以在 `/theme` 中选择。这使 Plugin 不仅提供工具和命令，还能定制 Claude Code 的视觉体验。
-
-**v2.1.121+**：
-
-- `--plugin-url`：直接通过 URL 加载远程 Plugin（如 GitHub 仓库的 ZIP 包），无需先 clone
-- `--plugin-dir` 现在也支持加载 `.zip` 文件（解压后自动加载）
-- Manifest 支持新的 `experimental` 字段，用于声明实验性功能
-
-**v2.1.126**：新增 `plugin prune` 命令，清理已安装但不再被任何项目引用的 Plugin，释放磁盘空间。
-
-```text
-/plugin prune
-```
-
-### 环境变量：`CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE`（v2.1.90）
-
-以下为 [GitHub Release v2.1.90](https://github.com/anthropics/claude-code/releases/tag/v2.1.90) **原文摘录**（便于核对，不二次发挥）：
-
-> Added `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` env var to keep the existing marketplace cache when `git pull` fails, useful in offline environments
-
-**理解要点**：仅在 marketplace 的 `git pull` 失败时，仍**保留已有 marketplace 缓存**；面向**离线**等场景。是否在环境中设置该变量，请结合你的网络与合规要求自行决定；变量名与语义以官方后续文档为准。
-
----
-
 ## 🗺️ 学习路径导航（先看这里！）
 
 ### 路径A：快速上手（⏱️ 30分钟）

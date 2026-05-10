@@ -28,50 +28,6 @@
 
 ---
 
-## 2026-04 差量更新（先读）
-
-这章旧版最大的问题，是把 Hooks 讲成“固定 20 种类型”。现在这个说法已经不稳了。
-
-- **官方 Hook 事件面仍在扩展**，不要再死记一个固定数字。
-- **当前主流处理器有 4 类**：`command`、`http`、`prompt`、`agent`。
-- 除了常见的 `PreToolUse` / `PostToolUse` / `UserPromptSubmit`，还应注意较新的事件，例如 `PostToolUseFailure`、`PermissionDenied`、`TaskCreated`、`TaskCompleted`、`StopFailure`、`CwdChanged`、`FileChanged`。
-
-因此，下面正文请用“事件族 + 处理器类型 + 典型场景”来理解，而不是背一个固定数量。
-
-### 与 Hooks 相关的 v2.1.90 → v2.1.133 变更（GitHub Release 摘录）
-
-下列句子均来自官方 *What's changed*，**英文原文**便于逐字核对；教程不展开实现细节。
-
-**v2.1.90**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.90)）：
-
-- *Fixed `Edit`/`Write` failing with "File content has changed" when a PostToolUse format-on-save hook rewrites the file between consecutive edits*
-- *Fixed `PreToolUse` hooks that emit JSON to stdout and exit with code 2 not correctly blocking the tool call*
-
-**v2.1.92**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.92)）：
-
-- *Fixed prompt-type Stop hooks incorrectly failing when the small fast model returns `ok:false`, and restored `preventContinuation:true` semantics for non-Stop prompt-type hooks*
-
-**v2.1.121**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.121)）：
-
-- *Hook JSON input now includes `effort.level` field, and `$CLAUDE_EFFORT` environment variable is set for hook subprocesses*
-
-这意味着 Hook 脚本现在可以感知当前 effort 等级（low/medium/high/xhigh/max），据此调整行为。例如，`xhigh` 时跳过某些轻量检查以避免打断深度推理。
-
-**v2.1.133**（[release](https://github.com/anthropics/claude-code/releases/tag/v2.1.133)）：
-
-- *`PostToolUse` hooks can now replace tool output for ALL tools via `hookSpecificOutput.updatedToolOutput`*
-- *Hook output now includes `duration_ms` field*
-
-**重点变化**：
-
-1. **`PostToolUse` 可替换工具输出**：以前 `PostToolUse` 只能做格式化或记录，现在可以通过 `hookSpecificOutput.updatedToolOutput` 字段替换工具的实际输出内容。适用于所有工具，不再局限于特定工具类型。
-2. **`duration_ms`**：Hook 执行耗时现在以毫秒级精度记录，方便性能监控和超时告警。
-3. **`effort.level`**：Hook 接收的 JSON input 新增 `effort.level` 字段，环境变量 `$CLAUDE_EFFORT` 同步可用。
-
-**阅读提示**：若 Hook 行为与上述条目相关但仍异常，以当前安装的 `claude --version` 及之后新 release 为准。
-
----
-
 ## 学习路径导航（先看这里！）
 
 > **根据你的情况选择学习路径**：这是一篇3000+行的长教程，不用全看！根据你的目标选择路径。
@@ -2997,25 +2953,3 @@ exit 0
 4. 遇到问题查阅第五部分和第六部分
 
 **记住**：Hooks是自动化的终极武器，合理使用可以让你的开发效率翻倍！
-
----
-
-**文档版本**：v1.3（2026-04：v2.1.90 / v2.1.92 release 摘录）
-**最后更新**：2026年4月5日
-**作者**：老金
-
-### v1.2（2026-04-05）
-
-- 差量更新：增加 **v2.1.90**（PostToolUse 与 PreToolUse 相关修复）、**v2.1.92**（prompt-type Stop hooks）官方 release *What's changed* 英文原文摘录（附链接）
-
-### v1.1 修正内容（2025-12-23）
-
-| 修正项 | 问题 | 修正后 |
-|--------|------|--------|
-| UserPromptSubmit输入格式 | 错误描述为"纯文本" | 修正为JSON格式 |
-| UserPromptSubmit示例脚本 | 直接读文本导致脚本无法工作 | 使用json.loads解析 |
-| 速查表UserPromptSubmit行 | 输入格式列写"纯文本"与正文矛盾 | 修正为JSON，输出列修正为"文本（注入上下文）" |
-| Notification输入格式 | 字段不完整 | 添加完整字段说明 |
-| Stop Hook输入格式 | 错误声称有reason字段 | 删除不存在的字段 |
-| 环境变量说明 | 错误声称有CLAUDE_SESSION_ID | 明确session_id在JSON中 |
-| Windows通知脚本 | NotifyIcon不稳定 | 改用BurntToast/原生Toast |

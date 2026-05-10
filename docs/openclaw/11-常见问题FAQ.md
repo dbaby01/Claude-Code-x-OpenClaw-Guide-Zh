@@ -18,14 +18,6 @@
 
 如果这里没有你遇到的问题，可以到 [GitHub Issues](https://github.com/openclaw/openclaw/issues) 提问，或加入 Discord 社区寻求帮助。
 
-> **2026-04 版本基线**
->
-> - **Node.js**：24.x 推荐，22.14+ 兼容
-> - **安装**：`macOS / Linux / WSL2` 下官方优先推荐 `install.sh + openclaw onboard`
-> - **Windows**：原生可用，但 WSL2 更稳定
-> - **诊断**：`openclaw doctor` 仍是正式支持的排障入口
-> - **稳定版 / 预发布**：教程以 **v2026.4.24** 稳定版为修订参考；Releases 上另有预发布（如 **v2026.4.24-beta.5**）。细则见 [00-阅读指南](00-阅读指南.md)。
-
 ---
 
 ## 一、安装和配置问题
