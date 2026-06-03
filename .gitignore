@@ -23,5 +23,6 @@ Thumbs.db
 .claude/
 .meta-kim/
 
-# 飞书同步脚本（含凭证配置，不提交）
+# 飞书同步脚本/配置（含文档 token，不提交）
 scripts/
+.feishu-sync/

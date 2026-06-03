@@ -8,8 +8,8 @@
 
 ### 修改
 
-- 全库稳定基线同步至 Claude Code v2.1.158、OpenClaw 稳定版 v2026.5.27、Codex CLI v0.135.0；OpenClaw v2026.5.28 beta / v2026.5.29-alpha.1 与 Codex v0.136.0-alpha.1 仍按预发布处理，不作为教程默认基线
-- README 重写项目定位、适用人群、学习路线和统计口径，统一表达为 39 篇完整教程 + 1 张速查卡、80 万+ Markdown 内容量、1500+ 实操示例和 250+ 问答条目
+- 全库稳定基线同步至 Claude Code v2.1.158、OpenClaw 稳定版 v2026.5.27、Codex App 26.527（Windows 包 26.527.3686.0）；OpenClaw v2026.5.28 beta / v2026.5.29-alpha.1 与 Codex CLI v0.136.0-alpha.1 仍按预发布处理，不作为教程默认基线
+- README 重写项目定位、适用人群、学习路线和统计口径，统一表达为 39 篇完整教程 + 1 张速查卡、80 万+ Markdown 内容量、1500+ 实操示例和 250+ 问答条目；Codex 徽章、版本表和免责声明统一改为 App 主线
 - Codex App 主线强化：CX-02 扩展为 App 桌面工作流主轴，补充 App 主控台认知、三条安全线、Local / Worktree / Cloud 选择表、任务模板、Review 逐项检查法、从零到 PR 实战和课程交叉验证口径
 - Codex 专题继续补强：CX-03 增加 App 命令工作流配方与 `/review` 维度表；CX-09 增加 Automation 合格输出和失败收敛策略；CX-10 增加 Review 严重程度分级和提交前反向解释；CX-11 增加 App -> Cloud 交接包和 Cloud 回流风险表；CX-12 补充 CLI v0.134.0 -> v0.135.0 差量
 - Codex 官方链接修正：将失效的 `/codex/review`、`/codex/automations`、`/codex/config` 口径改为当前可访问的 `/codex/app/review`、`/codex/app/automations`、`/codex/app/settings`、`/codex/cli/reference`

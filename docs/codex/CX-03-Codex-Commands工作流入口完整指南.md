@@ -2,7 +2,7 @@
 
 本篇以 Codex App 的 slash commands 为主线。CLI slash commands 只作为核对和排查补充。
 
-主要来源：OpenAI Codex App Commands、Codex CLI Slash Commands、Codex Follow Goals 官方文档。本篇按 2026-05-30 可查官方文档与 Codex CLI v0.135.0 修订；命令会随 App 版本、实验开关、插件和权限变化，最终以你当前 App 输入 `/` 后看到的列表为准。
+主要来源：OpenAI Codex App Commands、Codex CLI Slash Commands、Codex Follow Goals 官方文档。本篇按 2026-05-31 可查官方文档与 Codex App 26.527 修订；CLI slash commands 只作为辅助核对，命令会随 App 版本、实验开关、插件和权限变化，最终以你当前 App 输入 `/` 后看到的列表为准。
 
 ---
 
@@ -15,7 +15,7 @@
 > - **个人博客**：https://aiking.dev
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐⭐ 入门级
-> - **更新日期**：2026年5月30日
+> - **更新日期**：2026年5月31日
 > - **信息来源**：OpenAI Codex App Commands、CLI Slash Commands、Follow Goals 官方文档
 > - **前置要求**：已完成 [CX-01 安装](./CX-01-Codex-App安装与认证完整指南.md) 和 [CX-02 桌面工作流](./CX-02-Codex-App桌面工作流完整指南.md)
 

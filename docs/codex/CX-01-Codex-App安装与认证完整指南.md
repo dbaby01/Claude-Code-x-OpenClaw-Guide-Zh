@@ -2,7 +2,7 @@
 
 本篇只解决一件事：把 **Codex App** 正确装好、登上号、打开本地项目，并跑通第一个安全任务。
 
-官方来源：OpenAI Codex App 文档、Codex changelog、[Codex App Windows](https://developers.openai.com/codex/app/windows)、[Codex Quickstart](https://developers.openai.com/codex/quickstart)、Codex CLI 文档。本篇按 2026-05-30 可查官方文档与 Codex CLI v0.135.0 修订；入口、包名和版本会变化，以官方页面和当前 App 为准。
+官方来源：OpenAI Codex App 文档、Codex changelog、[Codex App Windows](https://developers.openai.com/codex/app/windows)、[Codex Quickstart](https://developers.openai.com/codex/quickstart)、Codex CLI 文档。本篇按 2026-05-31 可查官方文档与 Codex App 26.527 修订；CLI 文档只用于辅助安装、自动化和排查，入口、包名和版本会变化，以官方页面和当前 App 为准。
 
 ---
 
@@ -15,8 +15,8 @@
 > - **个人博客**：https://aiking.dev
 > - **预计学时**：2-3小时
 > - **难度等级**：⭐ 零基础入门
-> - **更新日期**：2026年5月30日
-> - **信息来源**：[Codex App Windows](https://developers.openai.com/codex/app/windows) | [Codex Quickstart](https://developers.openai.com/codex/quickstart) | Codex CLI 文档
+> - **更新日期**：2026年5月31日
+> - **信息来源**：[Codex App Windows](https://developers.openai.com/codex/app/windows) | [Codex Quickstart](https://developers.openai.com/codex/quickstart) | Codex changelog | Codex CLI 文档（辅助）
 > - **前置要求**：无（本系列第一篇）
 
 ---
@@ -297,7 +297,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 ## 8. macOS 安装：官方入口、系统权限和开发工具链
 
-> **2026-05-30 安装口径**：Codex App 以官方 App 入口和 App 内更新为准；CLI v0.135.0 的安装路径包括官方 install script、Windows PowerShell install script、npm、Homebrew 和 GitHub Release 二进制包。`install.sh` / `install.ps1` 可用 `CODEX_NON_INTERACTIVE=1` 做非交互安装；App 登录适合桌面工作流，API key / CLI 路径适合自动化、CI 和排查。
+> **2026-05-31 安装口径**：Codex App 主线按 App 26.527 复核，安装和更新以官方 App 入口、Microsoft Store / macOS 下载页与 App 内更新为准；CLI 安装只作为自动化、CI 和排查补充，可用官方 install script、Windows PowerShell install script、npm、Homebrew 或 GitHub Release 二进制包。`install.sh` / `install.ps1` 可用 `CODEX_NON_INTERACTIVE=1` 做非交互安装；App 登录适合桌面工作流，API key / CLI 路径适合自动化、CI 和排查。
 
 ### 8.1 从哪里下载
 
