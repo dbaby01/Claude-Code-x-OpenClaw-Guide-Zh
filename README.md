@@ -2,12 +2,14 @@
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/KimYx0207/AI-Coding-Guide-Zh?style=social)
-![GitHub forks](https://img.shields.io/github/forks/KimYx0207/AI-Coding-Guide-Zh?style=social)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Claude Code](https://img.shields.io/badge/Claude_Code-2.1.158-green.svg)
-![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.5.27-blue.svg)
-![Codex App](https://img.shields.io/badge/Codex_App-26.527-orange.svg)
+<p>
+  <a href="https://github.com/KimYx0207/AI-Coding-Guide-Zh/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KimYx0207/AI-Coding-Guide-Zh?style=flat-square&amp;logo=github&amp;label=Stars"></a>
+  <a href="https://github.com/KimYx0207/AI-Coding-Guide-Zh/forks"><img alt="Forks" src="https://img.shields.io/github/forks/KimYx0207/AI-Coding-Guide-Zh?style=flat-square&amp;logo=github&amp;label=Forks"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/KimYx0207/AI-Coding-Guide-Zh?style=flat-square&amp;label=License"></a>
+  <img alt="Claude Code" src="https://img.shields.io/badge/Claude_Code-2.1.158-green.svg">
+  <img alt="OpenClaw" src="https://img.shields.io/badge/OpenClaw-v2026.5.27-blue.svg">
+  <img alt="Codex App" src="https://img.shields.io/badge/Codex_App-26.527-orange.svg">
+</p>
 
 **AI Coding / Agent 工作流中文实战教程**
 
